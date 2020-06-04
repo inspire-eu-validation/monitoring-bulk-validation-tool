@@ -1,5 +1,5 @@
 ---
-name: Custom issue template
+name: Issue template
 about: Please do NOT open an issue here!
 title: ''
 labels: ''
