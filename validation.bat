@@ -1,0 +1,1 @@
+c:\prog\data-integration\Kitchen.bat /file:validation.kjb "/param:config=config.properties"
