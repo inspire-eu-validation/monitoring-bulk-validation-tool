@@ -27,7 +27,7 @@ Run *validate.bat* script, it will read all files with given suffix in the sourc
 When the transformation is run for the same endpoint again, it will continue processing source files that were not processed before, hence are not included in results CSV file. To re-validate an endpoint that was validated before, the CSV file needs to be renamed or moved out of the results folder.  
 Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback. For this purpose run *Spoon.bat*, open and run *validation.kjb* job.
 
-##### Metadata TG version classification procedure:
+#### Metadata TG version classification procedure:
 1. TG version classification (1.3 vs. 2.0) based on the presence of `gmd:useLimitation` element, denoted in column *version_0* in CSV results,
 2. validation against the corresponding Conformance Class(es), the corresponding validation reports end with *.html* and *.json* and columns *error_count_0*, *errors_0* in CSV results,
 3. if the validation 2. is passed, the MD record is classified as initially determined in 1. and denoted in column *version* in CSV results,
@@ -35,7 +35,7 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 5. if the second validation 4. is passed, the MD record is classified as compiled according to the TG tested later in 4. and denoted in column *version* in CSV results,
 6. if this second validation is NOT passed, the MD record is classified back as initially determined in 1. and denoted in column *version* in CSV results.
 
-##### Result files:
+#### Result files:
 - *endpoint* - folder where validation reports are saved, the subfolder structure of the source folder is preserved,
 - *endpoint.md.json* - source metadata summary,
 - *endpoint.csv* - validation results for each metadata record,
@@ -43,7 +43,7 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 - *endpoint.services.zip* - validation reports for service metadata records that failed validation,
 - *endpoint.dataset.zip* - validation reports for dataset, series, missing and unkown metadata records that failed validation.
 
-##### Results CSV columns:
+#### Results CSV columns:
 - *file_id* - identifies corresponding metdata file and validation reports,
 - *md_id* - metadata identifier (from source xml),
 - *version* - final metadata TG version classification (1.3 vs. 2.0),
