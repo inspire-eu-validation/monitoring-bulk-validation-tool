@@ -8,12 +8,12 @@ This software tool allows for validation of large numbers of metadata records us
 
 ### Installation:
 - Unzip PDI,
-- copy all *.jar* files from Apache HttpClient to PDI *lib* folder,
-- copy *inspire-validator.jar* to PDI *lib* folder,
+- copy all *.jar* files from Apache HttpClient to your PDI *lib* folder,
+- copy *inspire-validator.jar* to your PDI *lib* folder,
 - in *validate.bat* insert the path to your PDI *data-integration* folder.
 
 ### Configuration:
-In ***config.properties*** update the following items:
+In ***pdi/config.properties*** update the following items:
 - *endpoint* - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
 - *source_folder* - folder where source metadata are located (may contain subfolders) [use forward slashes "/" in the path],
 - *results_folder* - folder where results will be written [use forward slashes "/" in the path],
@@ -25,7 +25,7 @@ In ***config.properties*** update the following items:
 ### Usage:
 Run *validate.bat* script, it will read all files with given suffix in the source folder (and subfolders), validate each file using the validator instances and save validation reports and result files in the results folder.  
 When the transformation is run for the same endpoint again, it will continue processing source files that were not processed before, hence are not included in results CSV file. To re-validate an endpoint that was validated before, the CSV file needs to be renamed or moved out of the results folder.  
-Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback. For this purpose run *Spoon.bat*, open and run *validation.kjb* job.
+Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback. For this purpose run *Spoon.bat*, open and run *pdi/validation.kjb* job.
 
 #### Metadata TG version classification procedure:
 1. TG version classification (1.3 vs. 2.0) based on the presence of `gmd:useLimitation` element, denoted in column *version_0* in CSV results,
@@ -55,3 +55,20 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 - *errors_0* - failed assertions in the first validation,
 - *error_count_1* - number of failed assertions in the second validation,
 - *errors_1* - failed assertions in the second validation.
+
+### License
+Copyright 2020 EUROPEAN UNION
+Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence").
+You may not use this work except in compliance with the Licence.
+You may obtain a copy of the Licence at:
+
+https://ec.europa.eu/isa2/solutions/european-union-public-licence-eupl_en
+
+Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the Licence for the specific language governing permissions and limitations under the Licence.
+
+Date: 2020/06/08
+Authors: European Commission, Joint Research Centre - jrc-inspire-support@ec.europa.eu
+
+This work was supported by the [Interoperability solutions for public administrations, businesses and citizens programme](http://ec.europa.eu/isa2)
+through Action 2016.10: European Location Interoperability Solutions for e-Government (ELISE)
