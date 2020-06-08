@@ -24,7 +24,7 @@ In [config.properties](pdi/config.properties) update the following items:
 - *queue_max_size* - maximum number of test runs that can be run in parallel on one validator instance.
 
 ### Usage:
-Run [validation.bat](validation.bat) script, it will read all files with given suffix in the source folder (and subfolders), validate each file using the validator instances and save validation reports and result files in the results folder.  
+Run [validation.bat](validation.bat) script, it will read all files with given suffix in the source folder (and subfolders), [classify TG version](#metadata-tg-version-classification-procedure), validate each file using the validator instances and save validation reports and [result files](#result-files) in the results folder.  
 When the transformation is run for the same endpoint again, it will continue processing source files that were not processed before, hence are not included in results CSV file. To re-validate an endpoint that was validated before, the CSV file needs to be renamed or moved out of the results folder.  
 Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback. For this purpose run *Spoon.bat*, open and run [validation.kjb](pdi/validation.kjb) job.
 
