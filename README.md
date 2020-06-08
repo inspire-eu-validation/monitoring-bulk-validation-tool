@@ -57,17 +57,17 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 - *errors_1* - failed assertions in the second validation.
 
 ### License
-Copyright 2020 EUROPEAN UNION
-Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence").
-You may not use this work except in compliance with the Licence.
+Copyright 2020 EUROPEAN UNION  
+Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence").  
+You may not use this work except in compliance with the Licence.  
 You may obtain a copy of the Licence at:
 
 https://ec.europa.eu/isa2/solutions/european-union-public-licence-eupl_en
 
-Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
 See the Licence for the specific language governing permissions and limitations under the Licence.
 
-Date: 2020/06/08
+Date: 2020/06/08  
 Authors: European Commission, Joint Research Centre - jrc-inspire-support@ec.europa.eu
 
 This work was supported by the [Interoperability solutions for public administrations, businesses and citizens programme](http://ec.europa.eu/isa2)
