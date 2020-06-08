@@ -10,11 +10,11 @@ This software tool allows for validation of large numbers of metadata records us
 ### Installation:
 - Unzip PDI,
 - copy all *.jar* files from Apache HttpClient to your PDI *lib* folder,
-- copy [inspire-validator.jar](inspire-validator.jar) to your PDI *lib* folder,
-- in [validation.bat](validation.bat) insert the path to your PDI *data-integration* folder.
+- copy [*inspire-validator.jar*](inspire-validator.jar) to your PDI *lib* folder,
+- in [*validation.bat*](validation.bat) insert the path to your PDI *data-integration* folder.
 
 ### Configuration:
-In [config.properties](pdi/config.properties) update the following items:
+In [*config.properties*](pdi/config.properties) update the following items:
 - *endpoint* - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
 - *source_folder* - folder where source metadata are located (may contain subfolders) [use forward slashes "/" in the path],
 - *results_folder* - folder where results will be written [use forward slashes "/" in the path],
@@ -24,9 +24,9 @@ In [config.properties](pdi/config.properties) update the following items:
 - *queue_max_size* - maximum number of test runs that can be run in parallel on one validator instance.
 
 ### Usage:
-Run [validation.bat](validation.bat) script, it will read all files with given suffix in the source folder (and subfolders), [classify TG version](#metadata-tg-version-classification-procedure), validate each file using the validator instances and save validation reports and [result files](#result-files) in the results folder.  
+Run [*validation.bat*](validation.bat) script, it will read all files with given suffix in the source folder (and subfolders), [classify TG version](#metadata-tg-version-classification-procedure), validate each file using the validator instances and save validation reports and [result files](#result-files) in the results folder.  
 When the transformation is run for the same endpoint again, it will continue processing source files that were not processed before, hence are not included in results CSV file. To re-validate an endpoint that was validated before, the CSV file needs to be renamed or moved out of the results folder.  
-Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback. For this purpose run *Spoon.bat*, open and run [validation.kjb](pdi/validation.kjb) job.
+Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback. For this purpose run *Spoon.bat*, open and run [*validation.kjb*](pdi/validation.kjb) job.
 
 #### Metadata TG version classification procedure:
 1. TG version classification (1.3 vs. 2.0) based on the presence of `gmd:useLimitation` element, denoted in column *version_0* in CSV results,
