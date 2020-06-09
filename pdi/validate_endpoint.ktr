@@ -2,8 +2,30 @@
 <transformation>
   <info>
     <name>validate endpoint</name>
-    <description/>
-    <extended_description/>
+    <description>Read source metadata, validate using multiple instances, write results CSV.</description>
+    <extended_description>Copyright 2020 EUROPEAN UNION  
+Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by 
+the European Commission - subsequent versions of the EUPL (the "Licence").  
+You may not use this work except in compliance with the Licence.  
+You may obtain a copy of the Licence at:
+
+https://ec.europa.eu/isa2/solutions/european-union-public-licence-eupl_en
+
+Unless required by applicable law or agreed to in writing, software 
+distributed under the Licence is distributed on an "AS IS" basis, 
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
+See the Licence for the specific language governing permissions and 
+limitations under the Licence.
+
+Date: 2020/06/08  
+Authors: 
+European Commission, Joint Research Centre - jrc-inspire-support@ec.europa.eu
+
+This work was supported by the Interoperability solutions for public 
+administrations, businesses and citizens programme (http://ec.europa.eu/isa2)
+through Action 2016.10: 
+European Location Interoperability Solutions for e-Government (ELISE)
+</extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
@@ -693,6 +715,47 @@
     </GUI>
   </step>
   <step>
+    <name>count diff</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>unfinished</field_name>
+      <calc_type>SUBTRACT</calc_type>
+      <field_a>count_in</field_a>
+      <field_b>count_out</field_b>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>count in</name>
     <type>GroupBy</type>
     <description/>
@@ -1066,47 +1129,6 @@
     <GUI>
       <xloc>464</xloc>
       <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>count diff</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>unfinished</field_name>
-      <calc_type>SUBTRACT</calc_type>
-      <field_a>count_in</field_a>
-      <field_b>count_out</field_b>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

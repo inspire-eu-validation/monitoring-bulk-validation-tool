@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>validation</name>
-  <description/>
-  <extended_description>Full validation with results</extended_description>
+  <description>Full validation with results</description>
+  <extended_description>Copyright 2020 EUROPEAN UNION  
+Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by 
+the European Commission - subsequent versions of the EUPL (the "Licence").  
+You may not use this work except in compliance with the Licence.  
+You may obtain a copy of the Licence at:
+
+https://ec.europa.eu/isa2/solutions/european-union-public-licence-eupl_en
+
+Unless required by applicable law or agreed to in writing, software 
+distributed under the Licence is distributed on an "AS IS" basis, 
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
+See the Licence for the specific language governing permissions and 
+limitations under the Licence.
+
+Date: 2020/06/08  
+Authors: 
+European Commission, Joint Research Centre - jrc-inspire-support@ec.europa.eu
+
+This work was supported by the Interoperability solutions for public 
+administrations, businesses and citizens programme (http://ec.europa.eu/isa2)
+through Action 2016.10: 
+European Location Interoperability Solutions for e-Government (ELISE)
+</extended_description>
   <job_version/>
   <job_status>0</job_status>
   <directory>/</directory>
@@ -630,7 +652,7 @@
       <to>Delete zips</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
