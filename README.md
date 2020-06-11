@@ -20,7 +20,7 @@ In [*config.properties*](pdi/config.properties) update the following items:
 - `results_folder` - folder where results will be written [use forward slashes "/" in the path],
 - `source_suffix` - source metadata files suffix, used to filter the files to validate
 - `validator_nodes` - number of validator instances to use, `validator_url_X` needs to be provided for each instance,
-- `validator_url_X` - URLs for each validator instance,
+- `validator_url_X` - URLs for each validator instance [*http://.../v2/*]
 - `queue_max_size` - maximum number of test runs that can be run in parallel on one validator instance.
 
 ### Usage:
