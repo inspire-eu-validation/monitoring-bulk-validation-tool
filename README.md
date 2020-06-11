@@ -2,8 +2,8 @@
 This software tool allows for validation of large numbers of metadata records using the API of the [INSPIRE Reference Validator](https://inspire.ec.europa.eu/validator/about/). It was developed to support INSPIRE Monitoring & Reporting activities. The tool was built with [Pentaho Data Integration Community Edition](https://community.hitachivantara.com/s/article/data-integration-kettle) platform which is required to use it.
 
 ### Prerequisites:
-- One or more instances of [**INSPIRE Reference Validator**](https://github.com/inspire-eu-validation/community/releases/latest).
-- **Pentaho Data Integration** (PDI) **Community Edition** (CE), suggested PDI CE version is [9.0](https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/client-tools/pdi-ce-9.0.0.0-423.zip/download) or 8.2, (8.3 suffers from JSON Input step performance deterioration and is not recommended), in case of slow download click "Problems downloading?" and try an alternative download mirror.
+- One or more instances of **INSPIRE Reference Validator** [latest release](https://github.com/inspire-eu-validation/community/releases/latest).
+- **Pentaho Data Integration** (PDI) **Community Edition** (CE), suggested PDI CE version is [9.0](https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/client-tools/pdi-ce-9.0.0.0-423.zip/download) or 8.2, (8.3 suffers from JSON Input step performance deterioration and is not recommended). In case of slow download click "Problems downloading?" and try an alternative download mirror.
 - **Apache HttpClient** components [4.5.12](https://downloads.apache.org/httpcomponents/httpclient/binary/httpcomponents-client-4.5.12-bin.zip).
 - Source metadata compiled according to **Technical Guidelines** (TG) version **1.3** or **2.0** and contained in xml files with single metadata record per file. Suggested TG version is 2.0. The tool will classify the TG version according to the procedure outlined [below](#metadata-tg-version-classification-procedure). 
 
@@ -58,7 +58,7 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 - `errors_1` - failed assertions in the second validation.
 
 #### Conformity Indicators
-The Conformity Indicators **MDi1.1** and **MDi1.2** can be calculated by dividing the numbers of passed datasets and services found in validation results summary json by the numbers of available datasets DSi1.1 and services DSi1.2 found the Harvesting Console, i.e.:
+The metadata Conformity Indicators **MDi1.1** and **MDi1.2** can be calculated by dividing the numbers of passed datasets and services found in validation results summary json by the numbers of available datasets DSi1.1 and services DSi1.2 found in the Harvesting Console, i.e.:
 ```
 MDi1.1 = dataset_pass / DSi1.1
 MDi1.2 = service_pass / DSi1.2
