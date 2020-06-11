@@ -1,9 +1,9 @@
-## Tool for bulk validation of metadata for INSPIRE Monitoring & Reporting
-This software tool allows for validation of large numbers of metadata records using the API of the [INSPIRE Reference Validator](https://inspire.ec.europa.eu/validator/about/). It was built with [Pentaho Data Integration Community Edition](https://community.hitachivantara.com/s/article/data-integration-kettle) platform which is required to use it.
+## Bulk processing tool for the INSPIRE Reference Validator
+This software tool allows for validation of large numbers of metadata records using the API of the [INSPIRE Reference Validator](https://inspire.ec.europa.eu/validator/about/). It was developed to support INSPIRE Monitoring & Reporting activities. The tool was built with [Pentaho Data Integration Community Edition](https://community.hitachivantara.com/s/article/data-integration-kettle) platform which is required to use it.
 
 ### Prerequisites:
 - One or more instances of [INSPIRE Reference Validator](https://github.com/inspire-eu-validation/community/releases/latest).
-- Pentaho Data Integration (PDI) Community Edition (CE), suggested PDI CE version is [9.0](https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/client-tools/pdi-ce-9.0.0.0-423.zip/download) or 8.2, (8.3 suffers from JSON Input step performance deterioration and is not recommended).
+- Pentaho Data Integration (PDI) Community Edition (CE), suggested PDI CE version is [9.0](https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/client-tools/pdi-ce-9.0.0.0-423.zip/download) or 8.2, (8.3 suffers from JSON Input step performance deterioration and is not recommended), in case of slow download click "Problems downloading?" and try an alternative download mirror.
 - Apache HttpClient components [4.5.12](https://downloads.apache.org/httpcomponents/httpclient/binary/httpcomponents-client-4.5.12-bin.zip).
 - Source metadata compiled according to Technical Guidelines (TG) version 1.3 or 2.0 and contained in xml files with single metadata record per file. The tool will classify the TG version according to the procedure is outlined [below](#metadata-tg-version-classification-procedure). 
 
@@ -15,13 +15,13 @@ This software tool allows for validation of large numbers of metadata records us
 
 ### Configuration:
 In [*config.properties*](pdi/config.properties) update the following items:
-- *endpoint* - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
-- *source_folder* - folder where source metadata are located (may contain subfolders) [use forward slashes "/" in the path],
-- *results_folder* - folder where results will be written [use forward slashes "/" in the path],
-- *source_suffix* - source metadata files suffix, used to filter the files to validate
-- *validator_nodes* - number of validator instances to use, *validator_url_X* needs to be provided for each instance,
-- *validator_url_X* - URLs for each validator instance,
-- *queue_max_size* - maximum number of test runs that can be run in parallel on one validator instance.
+- `endpoint` - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
+- `source_folder` - folder where source metadata are located (may contain subfolders) [use forward slashes "/" in the path],
+- `results_folder` - folder where results will be written [use forward slashes "/" in the path],
+- `source_suffix` - source metadata files suffix, used to filter the files to validate
+- `validator_nodes` - number of validator instances to use, `validator_url_X` needs to be provided for each instance,
+- `validator_url_X` - URLs for each validator instance,
+- `queue_max_size` - maximum number of test runs that can be run in parallel on one validator instance.
 
 ### Usage:
 Run [*validation.bat*](validation.bat) script, it will read all files with given suffix in the source folder (and subfolders), [classify TG version](#metadata-tg-version-classification-procedure), validate each file using the validator instances and save validation reports and [result files](#result-files) in the results folder.  
@@ -57,7 +57,20 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 - *error_count_1* - number of failed assertions in the second validation,
 - *errors_1* - failed assertions in the second validation.
 
-### License
+#### Conformity Indicators
+The Conformity Indicators MDi1.1 and MDi1.2 can be calculated by dividing the numbers of passed datasets and services found in validation results summary json by the numbers of available datasets DSi1.1 and services DSi1.2 found the Harvesting Console, i.e.:
+```
+MDi1.1 = dataset_pass / DSi1.1
+MDi1.2 = service_pass / DSi1.2
+```
+
+### Acknowledgments
+This software tool was developed with contributions by:
+- [Davide Artasensi](https://github.com/dartasensi)
+- [Marco Minghini](https://github.com/MarcoMinghini)
+- [Fabio Vinci](https://github.com/fabiovin)
+
+### Licence
 Copyright 2020 EUROPEAN UNION  
 Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence").  
 You may not use this work except in compliance with the Licence.  
