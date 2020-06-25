@@ -5,7 +5,7 @@ This software tool allows for validation of large numbers of metadata records us
 - One or more instances of **INSPIRE Reference Validator** [latest release](https://github.com/inspire-eu-validation/community/releases/latest).
 - **Pentaho Data Integration** (PDI) **Community Edition** (CE), suggested PDI CE version is [9.0](https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/client-tools/pdi-ce-9.0.0.0-423.zip/download) or 8.2, (8.3 suffers from JSON Input step performance deterioration and is not recommended). In case of slow download click "Problems downloading?" and try an alternative download mirror.
 - **Apache HttpClient** components [4.5.12](https://downloads.apache.org/httpcomponents/httpclient/binary/httpcomponents-client-4.5.12-bin.zip).
-- Source metadata compiled according to the **INSPIRE Technical Guidelines** (TG) version **1.3** or **2.0** and available as XML files with single metadata record per file. The tool will classify the TG version according to the procedure outlined [below](#metadata-tg-version-classification-procedure). 
+- Source metadata compiled according to the **INSPIRE Technical Guidelines** (TG) version **1.3** or **2.0** and available as XML files with single metadata record per file. The tool will classify the TG version according to the procedure outlined [below](#metadata-validation-and-tg-version-classification-procedure). 
 
 ### Installation:
 - Unzip PDI,
