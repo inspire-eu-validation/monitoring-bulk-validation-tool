@@ -53,7 +53,7 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 6. if this second validation in Point 4. is also NOT passed, the MD record is classified as initially assumed in Point 1. and denoted in column *version* in CSV results.
 
 #### Result files:
-1. *endpoint* - folder where validation reports are saved, the subfolder structure of the source folder is preserved,
+1. *endpoint* - folder where validation reports for each metadata record are saved, the subfolder structure of the source folder is preserved,
 2. *endpoint.md.json* - source metadata summary,
 3. *endpoint.csv* - validation results for each metadata record, detailed [below](#results-csv-columns),
 4. *endpoint.json* - validation results summary,
