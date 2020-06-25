@@ -24,7 +24,7 @@ In [*config.properties*](pdi/config.properties) update the following items:
 - `queue_max_size` - maximum number of test runs that can be run in parallel on each validator instance.
 
 ### Usage:
-Run [*validation.bat*](validation.bat) script, it will perform Preprocessing, Validation and Results generation as described below:
+Run [*validation.bat*](validation.bat) script, it will perform preprocessing, validation and results generation as described below:
 1. Preprocessing:
    - read all files with the given suffix in the source folder (including subfolders) that were not validated before;
    - identify records with missing or unknown type;
