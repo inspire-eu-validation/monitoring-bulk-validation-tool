@@ -99,8 +99,7 @@ This software tool was developed with contributions by:
 - [Marco Minghini](https://github.com/MarcoMinghini)
 - [Fabio Vinci](https://github.com/fabiovin)
 
-This work was supported by the [Interoperability solutions for public administrations, businesses and citizens programme](http://ec.europa.eu/isa2)  
-through Action 2016.10: European Location Interoperability Solutions for e-Government (ELISE).
+This work was supported by the [Interoperability solutions for public administrations, businesses and citizens programme](http://ec.europa.eu/isa2) through Action 2016.10: European Location Interoperability Solutions for e-Government (ELISE).
 
 ### Licence
 Copyright 2020 EUROPEAN UNION  
