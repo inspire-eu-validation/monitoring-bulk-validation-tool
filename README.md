@@ -14,7 +14,7 @@ This software tool allows for validation of large numbers of metadata records us
 - in [*validation.bat*](validation.bat) insert the path to your PDI *data-integration* folder.
 
 ### Configuration:
-In [*config.properties*](pdi/config.properties) update the following items:
+In [*pdi\config.properties*](pdi/config.properties) update the following items:
 - `endpoint` - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
 - `source_folder` - folder where source metadata are located (including subfolders) [use forward slashes "/" in the path],
 - `results_folder` - folder where results will be written [use forward slashes "/" in the path],
@@ -30,14 +30,14 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
    - identify records with missing or unknown type;
    - identify duplicate records using MD5 hash values;
    - classify initial TG version of each record; 
-   - create *endpoint.md.json* metadata summary (after completed preprocessing of all records).
+   - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
 2. Validation (detailed [below](#metadata-validation-and-tg-version-classification-procedure)):
    - validate each record using the validator instance(s);
-   - save validation reports for each record in *endpoint* folder, the subfolder structure of the source folder is preserved;
+   - save validation reports for each record in *\<endpoint\>* folder, the subfolder structure of the source folder is preserved;
    - classify TG version of each record based on the validation results;
-   - add results for each record to CSV results *endpoint.csv*, detailed [below](#results-csv-columns).
+   - add results for each record to CSV results *\<endpoint\>.csv*, detailed [below](#results-csv-columns).
 3. Results:
-   - after completed validation of all source metadata the following result files are generated: *endpoint.json*, *endpoint.services.zip* and *endpoint.dataset.zip*, detailed [below](#result-files);
+   - after completed validation of all source metadata the following result files are generated: *\<endpoint\>.json*, *\<endpoint\>.services.zip* and *\<endpoint\>.dataset.zip*, detailed [below](#result-files);
    - the results can be used to calculate the conformity indicators as detailed [below](#conformity-indicators).
 
 In case the validation does not complete for all source metadata (due to errors, user interruption, etc.), when the transformation is run for the same endpoint again, it will continue processing source metadata that were not processed before, hence are not included in CSV results. To re-validate an endpoint that was validated before, the CSV results file needs to be renamed or moved out of the results folder.  
@@ -46,22 +46,22 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 
 #### Metadata validation and TG version classification procedure:
 1. TG version classification (1.3 vs. 2.0) is initially based on the presence of the `gmd:useLimitation` element, denoted in column *version_0* in CSV results; if the element is present, TG v. 1.3 is assumed; if the element is not present, TG v. 2.0 is assumed,
-2. validation against the Conformance Class(es) of the TG version assumed in Point 1.; the corresponding validation reports end with *.html* and *.json* and columns *error_count_0*, *errors_0* in CSV results,
-3. if the validation in Point 2. is passed, the MD record is classified as initially assumed  in Point 1. and denoted in column *version* in CSV results,
-4. if the validation in Point 2. is NOT passed, the validation against the Conformance Class(es) of the other TG version is run, the corresponding validation reports end with *.1.html*, *.1.json* and columns *error_count_1*, *errors_1* in CSV results,
-5. if the second validation in Point 4. is passed, the MD record is classified as compiled according to the TG version tested in Point 4. and denoted in column *version* in CSV results,
-6. if this second validation in Point 4. is also NOT passed, the MD record is classified as initially assumed in Point 1. and denoted in column *version* in CSV results.
+2. validation against the Conformance Class(es) of the TG version assumed in Point 1; the corresponding validation reports end with *.html* and *.json* and columns *error_count_0*, *errors_0* in CSV results,
+3. if the validation in Point 2 is passed, the MD record is classified as initially assumed  in Point 1 and denoted in column *version* in CSV results,
+4. if the validation in Point 2 is NOT passed, the validation against the Conformance Class(es) of the other TG version is run, the corresponding validation reports end with *.1.html*, *.1.json* and columns *error_count_1*, *errors_1* in CSV results,
+5. if the second validation in Point 4 is passed, the MD record is classified as compiled according to the TG version tested in Point 4 and denoted in column *version* in CSV results,
+6. if this second validation in Point 4 is also NOT passed, the MD record is classified as initially assumed in Point 1 and denoted in column *version* in CSV results.
 
 #### Result files:
-1. *endpoint* - folder where validation reports for each metadata record are saved, the subfolder structure of the source folder is preserved,
-2. *endpoint.md.json* - source metadata summary,
-3. *endpoint.csv* - validation results for each metadata record, detailed [below](#results-csv-columns),
-4. *endpoint.json* - validation results summary,
-5. *endpoint.services.zip* - validation reports for service metadata records that failed validation,
-6. *endpoint.dataset.zip* - validation reports for dataset, series, missing and unkown metadata records that failed validation.
+1. *\<endpoint\>* - folder where validation reports for each metadata record are saved, the subfolder structure of the source folder is preserved,
+2. *\<endpoint\>.md.json* - source metadata summary,
+3. *\<endpoint\>.csv* - validation results for each metadata record, detailed [below](#results-csv-columns),
+4. *\<endpoint\>.json* - validation results summary,
+5. *\<endpoint\>.services.zip* - validation reports for service metadata records that failed validation,
+6. *\<endpoint\>.dataset.zip* - validation reports for dataset, series, missing and unkown metadata records that failed validation.
 
-File 2. is produced only after completed preprocessing of all metadata records.  
-Files 4., 5. and 6. are produced only after completed validation of all metadata records.
+File 2 is produced only after completed preprocessing of all metadata records.  
+Files 4, 5 and 6 are produced only after completed validation of all metadata records.
 
 #### Results CSV columns:
 - `file_id` - identifies source metadata file and validation reports,
