@@ -14,7 +14,7 @@ This software tool allows for validation of large numbers of metadata records us
 - in [*validation.bat*](validation.bat) insert the path to your PDI *data-integration* folder.
 
 ### Configuration:
-In [*pdi\config.properties*](pdi/config.properties) update the following items:
+In [*pdi/config.properties*](pdi/config.properties) update the following items:
 - `endpoint` - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
 - `source_folder` - folder where source metadata are located (including subfolders) [use forward slashes "/" in the path],
 - `results_folder` - folder where results will be written [use forward slashes "/" in the path],
@@ -42,7 +42,7 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
 
 In case the validation does not complete for all source metadata (due to errors, user interruption, etc.), when the transformation is run for the same endpoint again, it will continue processing source metadata that were not processed before, hence are not included in CSV results. To re-validate an endpoint that was validated before, the CSV results file needs to be renamed or moved out of the results folder.  
 
-Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback, and allows for modifications. For this purpose run *Spoon.bat*, open and run [*validation.kjb*](pdi/validation.kjb) job.
+Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback, and allows for modifications. For this purpose run *Spoon.bat*, open and run [*pdi/validation.kjb*](pdi/validation.kjb) job.
 
 #### Metadata validation and TG version classification procedure:
 1. TG version classification (1.3 vs. 2.0) is initially based on the presence of the `gmd:useLimitation` element, denoted in column *version_0* in CSV results; if the element is present, TG v. 1.3 is assumed; if the element is not present, TG v. 2.0 is assumed,
