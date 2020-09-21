@@ -495,21 +495,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>copy json</from>
-      <to>copy json.1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>copy json.1</from>
-      <to>copy html</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>copy html</from>
-      <to>copy html.1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Filter failed</from>
       <to>Replace in string</to>
       <enabled>Y</enabled>
@@ -517,6 +502,11 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <hop>
       <from>Replace in string</from>
       <to>filenames</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>copy json</from>
+      <to>copy html</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -565,28 +555,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <decimal>.</decimal>
         <group>,</group>
         <length>36</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>ver</name>
-        <type>String</type>
-        <format/>
-        <currency>$</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>3</length>
-        <precision>1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>ver_md</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
@@ -743,39 +711,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>copy html.1</name>
-    <type>ProcessFiles</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <sourcefilenamefield>in_html_1</sourcefilenamefield>
-    <targetfilenamefield>out_html_1</targetfilenamefield>
-    <operation_type>copy</operation_type>
-    <addresultfilenames>N</addresultfilenames>
-    <overwritetargetfile>N</overwritetargetfile>
-    <createparentfolder>N</createparentfolder>
-    <simulate>N</simulate>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1152</xloc>
+      <xloc>880</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -808,38 +744,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
     </remotesteps>
     <GUI>
       <xloc>752</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>copy json.1</name>
-    <type>ProcessFiles</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <sourcefilenamefield>in_json_1</sourcefilenamefield>
-    <targetfilenamefield>out_json_1</targetfilenamefield>
-    <operation_type>copy</operation_type>
-    <addresultfilenames>N</addresultfilenames>
-    <overwritetargetfile>N</overwritetargetfile>
-    <createparentfolder>N</createparentfolder>
-    <simulate>N</simulate>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>880</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -898,38 +802,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <formula>
       <field_name>out_html</field_name>
       <formula_string>out_path + ".html"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>in_json_1</field_name>
-      <formula_string>in_path + ".1.json"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>in_html_1</field_name>
-      <formula_string>in_path + ".1.html"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>out_json_1</field_name>
-      <formula_string>out_path + ".1.json"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>out_html_1</field_name>
-      <formula_string>out_path + ".1.html"</formula_string>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>

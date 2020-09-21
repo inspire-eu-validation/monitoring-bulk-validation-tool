@@ -2,7 +2,7 @@
 <transformation>
   <info>
     <name>validate file</name>
-    <description>Single validation, to be used as sub-transformation only.</description>
+    <description>Validate one xml file, save reports. To be used as sub-transformation only.</description>
     <extended_description>Copyright 2020 EUROPEAN UNION  
 Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by 
 the European Commission - subsequent versions of the EUPL (the "Licence").  
@@ -565,18 +565,13 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>get html</from>
-      <to>save json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>run test</from>
       <to>get run id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>version, test</from>
-      <to>test id</to>
+      <from>test</from>
+      <to>test id, out path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -596,12 +591,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
     </hop>
     <hop>
       <from>Mapping input</from>
-      <to>version, test</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>test id</from>
-      <to>check queue</to>
+      <to>test</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -625,33 +615,23 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>check queue</from>
-      <to>uploaded?</to>
+      <from>get upload id</from>
+      <to>make test json</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>uploaded?</from>
+      <from>check queue</from>
       <to>upload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>get upload id</from>
-      <to>upload_id</to>
+      <from>test id, out path</from>
+      <to>check queue</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>uploaded?</from>
-      <to>make test json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>upload_id</from>
-      <to>upload_id...</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>upload_id...</from>
-      <to>make test json</to>
+      <from>get html</from>
+      <to>save json</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -675,7 +655,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
+      <xloc>576</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -700,7 +680,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1024</xloc>
+      <xloc>928</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -755,12 +735,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>ver_13</name>
-        <type>Boolean</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>other</name>
         <type>Boolean</type>
         <length>-1</length>
@@ -773,13 +747,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>out_path</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>upload_id</name>
+        <name>file_id</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -821,7 +789,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
     </remotesteps>
     <GUI>
       <xloc>64</xloc>
-      <yloc>432</yloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -829,7 +797,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <name>check queue</name>
     <type>UserDefinedJavaClass</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -871,7 +839,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 	HttpGet httpGet = new HttpGet(validatorUrl + progressPath);
 	httpGet.setConfig(queue.config);
 
-	int queueMaxSize = Integer.parseInt(getVariable("queue_max_size", "4")) + Integer.parseInt(getVariable("queue_max_add", "0"));
+	int queueMaxSize = Integer.parseInt(getVariable("queue_max_size", "4"));
 	int queueCheckDelay = Integer.parseInt(getVariable("queue_check_delay", "2"));
 	int count = queueMaxSize;
 	int delay = 0;
@@ -1111,7 +1079,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>704</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1238,7 +1206,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
+      <xloc>832</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1274,7 +1242,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </file>
     <fields>
       <field>
-        <name>upload_id_new</name>
+        <name>upload_id</name>
         <path>$.testObject.id</path>
         <type>String</type>
         <format/>
@@ -1308,8 +1276,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>32</yloc>
+      <xloc>704</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1364,7 +1332,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
+      <xloc>832</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1395,6 +1363,9 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <name>start_seconds</name>
       </remove>
       <remove>
+        <name>upload_id</name>
+      </remove>
+      <remove>
         <name>run_id</name>
       </remove>
       <remove>
@@ -1402,6 +1373,9 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </remove>
       <remove>
         <name>response</name>
+      </remove>
+      <remove>
+        <name>out_path</name>
       </remove>
     </fields>
     <attributes/>
@@ -1583,7 +1557,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
+      <xloc>832</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1771,7 +1745,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </GUI>
   </step>
   <step>
-    <name>test id</name>
+    <name>test id, out path</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -1787,6 +1761,51 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       <calc_type>SUBSTITUTE_VARIABLE</calc_type>
       <field_a>test_name</field_a>
       <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>p1</field_name>
+      <calc_type>CONSTANT</calc_type>
+      <field_a>${results_folder}/${endpoint}/</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>Y</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>p2</field_name>
+      <calc_type>SUBSTITUTE_VARIABLE</calc_type>
+      <field_a>p1</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>Y</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>out_path</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>p2</field_a>
+      <field_b>file_id</field_b>
       <field_c/>
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -1926,130 +1945,12 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>upload_id</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>upload_id</name>
-        <replaceby>upload_id_new</replaceby>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>816</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>upload_id...</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>upload_id_new</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>uploaded?</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>make test json</send_true_to>
-    <send_false_to>upload</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>upload_id</leftvalue>
-            <function>&lt;></function>
-            <rightvalue/>
-            <value>
-              <name>constant</name>
-              <type>String</type>
-              <text/>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>Y</isnull>
-              <mask/>
-            </value>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>upload_id</leftvalue>
-            <function>IS NOT NULL</function>
-            <rightvalue/>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>version, test</name>
+    <name>test</name>
     <type>Janino</type>
     <description/>
     <distribute>Y</distribute>
@@ -2060,16 +1961,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       <schema_name/>
     </partitioning>
     <formula>
-      <field_name>version</field_name>
-      <formula_string>ver_13 ? "1.3" : "2.0"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
       <field_name>test_name</field_name>
-      <formula_string>ver_13 ? "${CCinspire}" : (type.equals("service") ? (other ? "${CC5}" : "${CC4}") : "${CC1}")</formula_string>
+      <formula_string>type.equals("service") ? (other ? "${service_other_cc}" : "${service_cc}") : "${dataset_cc}"</formula_string>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -2086,6 +1979,100 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <GUI>
       <xloc>192</xloc>
       <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>inititialize</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <definitions>
+      <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+        <class_name>Processor</class_name>
+        <class_source>import inspire.validator.Queue;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.HttpClients;
+
+public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
+	int queueNr = Integer.parseInt(getVariable("queue_nr"));
+
+    logBasic("Initializing queue " + queueNr);
+
+	Queue queue = Queue.init(queueNr);
+
+	String proxyHost = getVariable("http.proxyHost", "");
+	int proxyPort = Integer.parseInt(getVariable("http.proxyPort", "-1"));
+	String proxyUser = getVariable("http.proxyUser", "");
+	String proxyPassword = getVariable("http.proxyPassword", "");
+
+	// Setup Proxy and Proxy Credentials
+	CredentialsProvider credsProvider = new BasicCredentialsProvider();
+	HttpHost proxy = null;
+
+	if (!proxyHost.equals("")) {
+		proxy = new HttpHost(proxyHost, proxyPort);
+
+		if (!proxyUser.equals("")) {
+			credsProvider.setCredentials(
+				new AuthScope(proxyHost, proxyPort),
+				new UsernamePasswordCredentials(proxyUser, proxyPassword)
+			);
+		}
+	}
+
+	queue.client = HttpClients
+		.custom()
+		.setDefaultCredentialsProvider(credsProvider)
+		.build();
+
+	RequestConfig.Builder reqConfigBuilder = RequestConfig.custom();
+	if (proxy != null) {
+		reqConfigBuilder.setProxy(proxy);
+	}
+
+	queue.config = reqConfigBuilder.build();
+
+	return parent.initImpl(stepMetaInterface, stepDataInterface);
+}
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
+    setOutputDone();
+    return false;
+}
+
+</class_source>
+      </definition>
+    </definitions>
+    <fields>
+    </fields>
+    <clear_result_fields>N</clear_result_fields>
+    <info_steps/>
+    <target_steps/>
+    <usage_parameters/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

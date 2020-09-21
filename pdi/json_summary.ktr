@@ -584,26 +584,14 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </group>
     <fields>
       <field>
-        <aggregate>dateset_pass</aggregate>
-        <subject>dateset_pass</subject>
+        <aggregate>d_s_pass</aggregate>
+        <subject>d_s_pass</subject>
         <type>SUM</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>dateset_fail</aggregate>
-        <subject>dateset_fail</subject>
-        <type>SUM</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>dateset_13</aggregate>
-        <subject>dateset_13</subject>
-        <type>SUM</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>dateset_20</aggregate>
-        <subject>dateset_20</subject>
+        <aggregate>d_s_fail</aggregate>
+        <subject>d_s_fail</subject>
         <type>SUM</type>
         <valuefield/>
       </field>
@@ -620,14 +608,20 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <valuefield/>
       </field>
       <field>
-        <aggregate>service_13</aggregate>
-        <subject>service_13</subject>
+        <aggregate>dataset</aggregate>
+        <subject>dataset</subject>
         <type>SUM</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>service_20</aggregate>
-        <subject>service_20</subject>
+        <aggregate>series</aggregate>
+        <subject>series</subject>
+        <type>SUM</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>service</aggregate>
+        <subject>service</subject>
         <type>SUM</type>
         <valuefield/>
       </field>
@@ -648,6 +642,24 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <subject>duplicate</subject>
         <type>SUM</type>
         <valuefield/>
+      </field>
+      <field>
+        <aggregate>duplicate_ids</aggregate>
+        <subject>duplicate_ids</subject>
+        <type>CONCAT_STRING</type>
+        <valuefield>""</valuefield>
+      </field>
+      <field>
+        <aggregate>missing_ids</aggregate>
+        <subject>missing_ids</subject>
+        <type>CONCAT_STRING</type>
+        <valuefield>""</valuefield>
+      </field>
+      <field>
+        <aggregate>unknown_ids</aggregate>
+        <subject>unknown_ids</subject>
+        <type>CONCAT_STRING</type>
+        <valuefield>""</valuefield>
       </field>
     </fields>
     <attributes/>
@@ -688,28 +700,16 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <name>endpoint</name>
       </field>
       <field>
-        <name>dateset_pass</name>
+        <name>d_s_pass</name>
       </field>
       <field>
-        <name>dateset_fail</name>
-      </field>
-      <field>
-        <name>dateset_13</name>
-      </field>
-      <field>
-        <name>dateset_20</name>
+        <name>d_s_fail</name>
       </field>
       <field>
         <name>service_pass</name>
       </field>
       <field>
         <name>service_fail</name>
-      </field>
-      <field>
-        <name>service_13</name>
-      </field>
-      <field>
-        <name>service_20</name>
       </field>
       <field>
         <name>missing</name>
@@ -802,7 +802,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>dateset_pass</name>
+        <name>d_s_pass</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -814,31 +814,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>dateset_fail</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>dateset_13</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>dateset_20</name>
+        <name>d_s_fail</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -874,7 +850,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>service_13</name>
+        <name>dataset</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -886,7 +862,19 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>service_20</name>
+        <name>service</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>series</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -960,38 +948,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <schema_name/>
     </partitioning>
     <formula>
-      <field_name>dataset</field_name>
-      <formula_string>"dataset".equals(type) || "series".equals(type)</formula_string>
-      <value_type>Boolean</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>service</field_name>
-      <formula_string>"service".equals(type)</formula_string>
-      <value_type>Boolean</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>missing</field_name>
-      <formula_string>type==null || "".equals(type)</formula_string>
-      <value_type>Boolean</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>unknown</field_name>
-      <formula_string>!dataset &amp;&amp; !service &amp;&amp; !missing</formula_string>
-      <value_type>Boolean</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
       <field_name>pass</field_name>
       <formula_string>"PASSED".equals(result) || "PASSED_MANUAL".equals(result)</formula_string>
       <value_type>Boolean</value_type>
@@ -1016,48 +972,56 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <replace_field/>
     </formula>
     <formula>
-      <field_name>ver13</field_name>
-      <formula_string>"1.3".equals(ver)</formula_string>
+      <field_name>dataset</field_name>
+      <formula_string>"dataset".equals(type) &amp;&amp; !duplicate</formula_string>
       <value_type>Boolean</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
     <formula>
-      <field_name>ver20</field_name>
-      <formula_string>"2.0".equals(ver)</formula_string>
+      <field_name>service</field_name>
+      <formula_string>"service".equals(type) &amp;&amp; !duplicate</formula_string>
       <value_type>Boolean</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
     <formula>
-      <field_name>dateset_pass</field_name>
-      <formula_string>dataset &amp;&amp; pass</formula_string>
+      <field_name>series</field_name>
+      <formula_string>"series".equals(type) &amp;&amp; !duplicate</formula_string>
       <value_type>Boolean</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
     <formula>
-      <field_name>dateset_fail</field_name>
-      <formula_string>dataset &amp;&amp; fail</formula_string>
+      <field_name>missing</field_name>
+      <formula_string>(type==null || "".equals(type)) &amp;&amp; !duplicate</formula_string>
       <value_type>Boolean</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
     <formula>
-      <field_name>dateset_13</field_name>
-      <formula_string>dataset &amp;&amp; ver13</formula_string>
+      <field_name>unknown</field_name>
+      <formula_string>!dataset &amp;&amp; !service &amp;&amp; !series &amp;&amp; !missing &amp;&amp; !duplicate</formula_string>
       <value_type>Boolean</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
     <formula>
-      <field_name>dateset_20</field_name>
-      <formula_string>dataset &amp;&amp; ver20</formula_string>
+      <field_name>d_s_pass</field_name>
+      <formula_string>(dataset || series) &amp;&amp; pass</formula_string>
+      <value_type>Boolean</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>d_s_fail</field_name>
+      <formula_string>(dataset || series) &amp;&amp; fail</formula_string>
       <value_type>Boolean</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -1080,17 +1044,25 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <replace_field/>
     </formula>
     <formula>
-      <field_name>service_13</field_name>
-      <formula_string>service &amp;&amp; ver13</formula_string>
-      <value_type>Boolean</value_type>
+      <field_name>duplicate_ids</field_name>
+      <formula_string>duplicate ? id : null</formula_string>
+      <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
     <formula>
-      <field_name>service_20</field_name>
-      <formula_string>service &amp;&amp; ver20</formula_string>
-      <value_type>Boolean</value_type>
+      <field_name>missing_ids</field_name>
+      <formula_string>missing ? id : null</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>unknown_ids</field_name>
+      <formula_string>unknown ? id : null</formula_string>
+      <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
@@ -1127,22 +1099,29 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var summary = JSON.stringify({
+  "id": endpoint,
+  "type_count": {
+    "dataset": dataset,
+    "service": service,
+    "series": series,
+    "unknown": unknown,
+    "missing": missing,
+    "duplicate": duplicate
+  },
+  "type_ids": {
+    "unknown": unknown_ids.split('""'),
+    "missing": missing_ids.split('""'),
+    "duplicate": duplicate_ids.split('""')
+  },
   "validation": {
     "dataset": {
-      "pass": dateset_pass,
-      "fail": dateset_fail,
-      "1.3": dateset_13,
-      "2.0": dateset_20
+      "pass": d_s_pass,
+      "fail": d_s_fail
     },
     "services": {
       "pass": service_pass,
-      "fail": service_fail,
-      "1.3": service_13,
-      "2.0": service_20
-    },
-    "missing": missing,
-    "unknown": unknown,
-    "duplicate": duplicate
+      "fail": service_fail
+    }
   }
 }, null, 2);</jsScript_script>
       </jsScript>
@@ -1216,28 +1195,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <decimal>.</decimal>
         <group>,</group>
         <length>36</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>ver</name>
-        <type>String</type>
-        <format/>
-        <currency>$</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>3</length>
-        <precision>1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>ver_md</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>

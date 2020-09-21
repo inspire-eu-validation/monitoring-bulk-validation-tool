@@ -591,11 +591,11 @@ European Location Interoperability Solutions for e-Government (ELISE)
     </hop>
     <hop>
       <from>read XML</from>
-      <to>ver_13, other</to>
+      <to>other</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ver_13, other</from>
+      <from>other</from>
       <to>Unique MD5</to>
       <enabled>Y</enabled>
     </hop>
@@ -641,7 +641,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>336</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -666,7 +666,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>336</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
@@ -691,7 +691,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>208</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
@@ -735,7 +735,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>464</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
@@ -871,7 +871,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
+      <xloc>720</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
@@ -912,7 +912,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>464</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -946,7 +946,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>208</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -979,7 +979,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>208</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1029,7 +1029,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
+      <xloc>848</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1072,7 +1072,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>592</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1130,7 +1130,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <in_stream_name>file_id</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>${source_folder}/</replace_string>
+        <replace_string>${source_folder}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
@@ -1150,6 +1150,18 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
       </field>
+      <field>
+        <in_stream_name>file_id</in_stream_name>
+        <out_stream_name/>
+        <use_regex>yes</use_regex>
+        <replace_string>^/</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1160,7 +1172,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>464</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1197,7 +1209,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
+      <xloc>464</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1239,7 +1251,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>592</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1324,7 +1336,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
+      <xloc>976</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1373,7 +1385,40 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>592</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>other</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>other</field_name>
+      <formula_string>"other".equals(service_type)</formula_string>
+      <value_type>Boolean</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1459,36 +1504,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <repeat>N</repeat>
       </field>
       <field>
-        <name>version</name>
-        <type>String</type>
-        <format>#.#</format>
-        <currency>$</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>3</length>
-        <precision>1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>version_md</name>
-        <type>String</type>
-        <format>#.#</format>
-        <currency>$</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>3</length>
-        <precision>1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
         <name>type</name>
         <type>String</type>
         <format/>
@@ -1553,7 +1568,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
+      <xloc>720</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1621,21 +1636,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <repeat>N</repeat>
       </field>
       <field>
-        <name>use_limitation</name>
-        <xpath>//*[local-name()='useLimitation' and namespace-uri()='http://www.isotc211.org/2005/gmd']</xpath>
-        <element_type>node</element_type>
-        <result_type>singlenode</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
         <name>service_type</name>
         <xpath>//*[local-name()='serviceType' and namespace-uri()='http://www.isotc211.org/2005/srv']/*[local-name()='LocalName' and namespace-uri()='http://www.isotc211.org/2005/gco']</xpath>
         <element_type>node</element_type>
@@ -1674,7 +1674,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>336</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1708,7 +1708,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>336</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1805,49 +1805,8 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>592</xloc>
       <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ver_13, other</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <formula>
-      <field_name>ver_13</field_name>
-      <formula_string>!use_limitation.isEmpty()</formula_string>
-      <value_type>Boolean</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <formula>
-      <field_name>other</field_name>
-      <formula_string>"other".equals(service_type)</formula_string>
-      <value_type>Boolean</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

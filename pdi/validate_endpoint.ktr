@@ -502,36 +502,95 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>START</note>
+      <xloc>160</xloc>
+      <yloc>112</yloc>
+      <width>60</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>END</note>
+      <xloc>464</xloc>
+      <yloc>112</yloc>
+      <width>45</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>END</note>
+      <xloc>928</xloc>
+      <yloc>144</yloc>
+      <width>45</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>END</note>
+      <xloc>800</xloc>
+      <yloc>368</yloc>
+      <width>45</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
       <from>read endpoint</from>
       <to>duplicates</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>result 0 failed?</from>
-      <to>revert version</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>result?</from>
-      <to>result 0 failed?</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>validate multi-node</from>
-      <to>result?</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>result?</from>
-      <to>write error</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>result 0 failed?</from>
-      <to>write error</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -575,18 +634,8 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>result?</from>
-      <to>main output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>main output</from>
       <to>write result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>revert version</from>
-      <to>main output</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -607,6 +656,21 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <hop>
       <from>incomplete</from>
       <to>Abort</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>validate multi-node</from>
+      <to>test completed?</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>test completed?</from>
+      <to>main output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>test completed?</from>
+      <to>write error</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -879,90 +943,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
     </partitioning>
     <fields>
       <field>
-        <name>out_path</name>
-        <variable/>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>upload_id</name>
-        <variable/>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>version_0</name>
-        <variable/>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>result_0</name>
-        <variable/>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>errors_0</name>
-        <variable/>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>error_count_0</name>
-        <variable/>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>version</name>
-        <variable/>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
         <name>result</name>
         <variable>DUPLICATE</variable>
         <type>String</type>
@@ -975,7 +955,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>errors_1</name>
+        <name>errors</name>
         <variable/>
         <type>String</type>
         <format/>
@@ -987,7 +967,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>error_count_1</name>
+        <name>error_count</name>
         <variable/>
         <type>Integer</type>
         <format/>
@@ -1008,7 +988,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
+      <xloc>320</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1188,7 +1168,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
     </GUI>
   </step>
   <step>
-    <name>result 0 failed?</name>
+    <name>test completed?</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1198,18 +1178,18 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>revert version</send_true_to>
+    <send_true_to>main output</send_true_to>
     <send_false_to>write error</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>result_0</leftvalue>
-        <function>=</function>
+        <leftvalue>result</leftvalue>
+        <function>IN LIST</function>
         <rightvalue/>
         <value>
           <name>constant</name>
           <type>String</type>
-          <text>FAILED</text>
+          <text>FAILED;PASSED;PASSED_MANUAL</text>
           <length>-1</length>
           <precision>-1</precision>
           <isnull>N</isnull>
@@ -1226,85 +1206,8 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>result?</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fieldname>result</fieldname>
-    <use_contains>N</use_contains>
-    <case_value_type>String</case_value_type>
-    <case_value_format/>
-    <case_value_decimal/>
-    <case_value_group/>
-    <default_target_step>write error</default_target_step>
-    <cases>
-      <case>
-        <value>PASSED</value>
-        <target_step>main output</target_step>
-      </case>
-      <case>
-        <value>PASSED_MANUAL</value>
-        <target_step>main output</target_step>
-      </case>
-      <case>
-        <value>FAILED</value>
-        <target_step>result 0 failed?</target_step>
-      </case>
-    </cases>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
+      <xloc>320</xloc>
       <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>revert version</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>version</name>
-        <replaceby>version_0</replaceby>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1322,7 +1225,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Entry.Current.Directory}/validate_cycle_sub.ktr</filename>
+    <filename>${Internal.Entry.Current.Directory}/validate_file_sub.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -1341,6 +1244,10 @@ European Location Interoperability Solutions for e-Government (ELISE)
           <main_path>Y</main_path>
           <rename_on_output>N</rename_on_output>
           <description/>
+          <connector>
+            <parent>test_status</parent>
+            <child>result</child>
+          </connector>
         </mapping>
       </output>
       <parameters>
@@ -1436,31 +1343,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>version_0</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>result_0</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1496,7 +1379,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>error_count_0</name>
+        <name>error_count</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -1508,31 +1391,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>errors_0</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>error_count_1</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>errors_1</name>
+        <name>errors</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1553,7 +1412,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>320</xloc>
       <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1625,30 +1484,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>version</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>version_0</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>type</name>
         <type>String</type>
         <format/>
@@ -1685,7 +1520,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>error_count_0</name>
+        <name>error_count</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -1697,31 +1532,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>errors_0</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>error_count_1</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>errors_1</name>
+        <name>errors</name>
         <type>String</type>
         <format/>
         <currency/>
