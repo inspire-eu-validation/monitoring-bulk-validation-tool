@@ -31,7 +31,10 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
    - identify duplicate records using MD5 hash values;
    - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
 2. Validation:
-   - validate each record using the validator instance(s);
+   - validate each record using the validator instance(s), [*pdi/config.properties*](pdi/config.properties) specifies the TestSuide ids for Conformance Classes used for validation of:
+     - data sets and data series,
+	 - network services,
+	 - invocable spatial data services (identified by value *other* for *serviceType* XML element);
    - save validation reports for each record in *\<results_folder\>*/*\<endpoint\>* folder:
      - the subfolder structure of *\<source_folder\>* is preserved, 
 	 - filenames correspond to those of source metadata with *\<source_suffix\>* removed, 
