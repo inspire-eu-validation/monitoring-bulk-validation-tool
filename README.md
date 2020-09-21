@@ -20,7 +20,7 @@ In [*pdi/config.properties*](pdi/config.properties) update the following items:
 - `results_folder` - folder where results will be written [use forward slashes "/" in the path],
 - `source_suffix` - source metadata files suffix, used to filter the files to validate,
 - `validator_nodes` - number of validator instances to use, `validator_url_X` needs to be provided for each instance,
-- `validator_url_X` - URLs for each validator instance, up to "v2/" [*http://.../v2/*],
+- `validator_url_X` - URLs for each validator instance, up to "/v2/" [*http://.../v2/*],
 - `queue_max_size` - maximum number of test runs that can be run in parallel on each validator instance.
 
 ### Usage:
@@ -32,7 +32,10 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
    - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
 2. Validation:
    - validate each record using the validator instance(s);
-   - save validation reports for each record in *\<endpoint\>* folder, the subfolder structure of the source folder is preserved;
+   - save validation reports for each record in *\<endpoint\>* folder:
+     - the subfolder structure of source folder is preserved, 
+	 - filenames correspond to those of source metadata with *\<source_suffix\>* removed, 
+	 - each report is saved in two versions: *.html* and *.json*;
    - add results for each record to CSV results *\<endpoint\>.csv*, detailed [below](#results-csv-columns).
 3. Results:
    - after completed validation of all source metadata the following result files are generated: *\<endpoint\>.json*, *\<endpoint\>.services.zip* and *\<endpoint\>.dataset.zip*, detailed [below](#result-files);
@@ -43,7 +46,7 @@ In case the validation does not complete for all source metadata (due to errors,
 Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback, and allows for modifications. For this purpose run *Spoon.bat*, open and run [*pdi/validation.kjb*](pdi/validation.kjb) job.
 
 #### Result files:
-1. *\<endpoint\>* - folder where validation reports for each metadata record are saved, the subfolder structure of the source folder is preserved,
+1. *\<endpoint\>* - folder where validation reports for each metadata record are saved,
 2. *\<endpoint\>.md.json* - source metadata summary,
 3. *\<endpoint\>.csv* - validation results for each metadata record, detailed [below](#results-csv-columns),
 4. *\<endpoint\>.json* - validation results summary and source metadata summary,
