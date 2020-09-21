@@ -1,19 +1,19 @@
 ## Bulk processing tool for the INSPIRE Reference Validator
 This software tool allows for validation of large numbers of metadata records using the API of the [INSPIRE Reference Validator](https://inspire.ec.europa.eu/validator/about/). It was developed to support INSPIRE Monitoring & Reporting activities. The tool was built with [Pentaho Data Integration Community Edition](https://community.hitachivantara.com/s/article/data-integration-kettle) platform which is required to use it.
 
-### Prerequisites:
+### Prerequisites
 - One or more instances of **INSPIRE Reference Validator** [latest release](https://github.com/inspire-eu-validation/community/releases/latest).
 - **Pentaho Data Integration** (PDI) **Community Edition** (CE), suggested PDI CE version is [9.0](https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/client-tools/pdi-ce-9.0.0.0-423.zip/download) or 8.2, (8.3 suffers from JSON Input step performance deterioration and is not recommended). In case of slow download click "Problems downloading?" and try an alternative download mirror.
 - **Apache HttpClient** components [4.5.12](https://downloads.apache.org/httpcomponents/httpclient/binary/httpcomponents-client-4.5.12-bin.zip).
 - Source metadata compiled according to the **INSPIRE Technical Guidelines** (TG) version **2.0** and available as XML files with single metadata record per file.
 
-### Installation:
+### Installation
 - Unzip PDI,
 - copy all *.jar* files from Apache HttpClient to your PDI *lib* folder,
 - copy [*inspire-validator.jar*](inspire-validator.jar) to your PDI *lib* folder,
 - in [*validation.bat*](validation.bat) insert the path to your PDI *data-integration* folder.
 
-### Configuration:
+### Configuration
 In [*pdi/config.properties*](pdi/config.properties) update the following items:
 - `endpoint` - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
 - `source_folder` - folder where source metadata are located (including subfolders) [use forward slashes "/" in the path],
@@ -23,7 +23,7 @@ In [*pdi/config.properties*](pdi/config.properties) update the following items:
 - `validator_url_X` - URLs for each validator instance, up to "/v2/" [*http://.../v2/*],
 - `queue_max_size` - maximum number of test runs that can be run in parallel on each validator instance.
 
-### Usage:
+### Usage
 Run [*validation.bat*](validation.bat) script, it will perform preprocessing, validation and results generation as described below:
 1. Preprocessing:
    - read all files with the given suffix in *\<source_folder\>* (including subfolders) that were not validated before;
@@ -32,7 +32,7 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
    - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
 2. Validation:
    - validate each record using the validator instance(s);
-   - save validation reports for each record in *\<endpoint\>* folder:
+   - save validation reports for each record in *\<results_folder\>*/*\<endpoint\>* folder:
      - the subfolder structure of *\<source_folder\>* is preserved, 
 	 - filenames correspond to those of source metadata with *\<source_suffix\>* removed, 
 	 - each report is saved in two versions: *.html* and *.json*;
@@ -45,7 +45,8 @@ In case the validation does not complete for all source metadata (due to errors,
 
 Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback, and allows for modifications. For this purpose run *Spoon.bat*, open and run [*pdi/validation.kjb*](pdi/validation.kjb) job.
 
-#### Result files:
+#### Result files
+All result files are saved in *\<results_folder\>*:
 1. *\<endpoint\>* - folder where validation reports for each metadata record are saved,
 2. *\<endpoint\>.md.json* - source metadata summary,
 3. *\<endpoint\>.csv* - validation results for each metadata record, detailed [below](#results-csv-columns),
@@ -56,7 +57,7 @@ Alternatively, the procedure can be run from the PDI user interface (Spoon) whic
 File 2 is produced only after completed preprocessing of all metadata records.  
 Files 4, 5 and 6 are produced only after completed validation of all metadata records.
 
-#### Results CSV columns:
+#### Results CSV columns
 - `file_id` - identifies source metadata file and validation reports,
 - `md_id` - metadata identifier (from source XML),
 - `type` - metadata type (from source XML),
