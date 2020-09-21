@@ -26,14 +26,14 @@ In [*pdi/config.properties*](pdi/config.properties) update the following items:
 ### Usage:
 Run [*validation.bat*](validation.bat) script, it will perform preprocessing, validation and results generation as described below:
 1. Preprocessing:
-   - read all files with the given suffix in the source folder (including subfolders) that were not validated before;
+   - read all files with the given suffix in *\<source_folder\>* (including subfolders) that were not validated before;
    - identify records with missing or unknown type;
    - identify duplicate records using MD5 hash values;
    - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
 2. Validation:
    - validate each record using the validator instance(s);
    - save validation reports for each record in *\<endpoint\>* folder:
-     - the subfolder structure of source folder is preserved, 
+     - the subfolder structure of *\<source_folder\>* is preserved, 
 	 - filenames correspond to those of source metadata with *\<source_suffix\>* removed, 
 	 - each report is saved in two versions: *.html* and *.json*;
    - add results for each record to CSV results *\<endpoint\>.csv*, detailed [below](#results-csv-columns).
