@@ -34,7 +34,7 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
    - validate each record using the validator instance(s), [*pdi/config.properties*](pdi/config.properties) specifies the TestSuide ids for Conformance Classes used for validation of:
      - data sets and data series,
 	 - network services,
-	 - invocable spatial data services (identified by value *other* for *serviceType* XML element);
+	 - invocable spatial data services (identified by the value *other* for *serviceType* XML element);
    - save validation reports for each record in *\<results_folder\>*/*\<endpoint\>* folder:
      - the subfolder structure of *\<source_folder\>* is preserved, 
 	 - filenames correspond to those of source metadata with *\<source_suffix\>* removed, 
@@ -70,7 +70,7 @@ Files 4, 5 and 6 are produced only after completed validation of all metadata re
 - `errors` - ids of failed assertions.
 
 #### Conformity Indicators
-The metadata Conformity Indicators **MDi1.1** and **MDi1.2** can be calculated by dividing the number of passed data sets metadata and the number of passed service metadata found in the validation results summary (JSON file) by, respectively, the total number of available datasets (indicator DSi1.1) and the total number of available services (indicator DSi1.2) retrieved from the Harvest Console (see Article 4 of ID M&R [below](#external-document-references)), i.e.:
+The metadata Conformity Indicators **MDi1.1** and **MDi1.2** can be calculated by dividing the number of passed data sets metadata and the number of passed service metadata found in the validation results summary (JSON file) by, respectively, the total number of available data sets (indicator DSi1.1) and the total number of available services (indicator DSi1.2) retrieved from the Harvest Console (see Article 4 of ID M&R [below](#external-document-references)), i.e.:
 ```
 MDi1.1 = dataset_metadata_passed / DSi1.1
 MDi1.2 = service_metadata_passed / DSi1.2
