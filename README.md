@@ -26,15 +26,16 @@ In [*pdi/config.properties*](pdi/config.properties) update the following items:
 ### Usage
 Run [*validation.bat*](validation.bat) script, it will perform preprocessing, validation and results generation as described below:
 1. Preprocessing:
-   - read all files with the given suffix in *\<source_folder\>* (including subfolders) that were not validated before;
+   - read all files with the given *\<source_suffix\>* located in *\<source_folder\>* (including subfolders) that were not validated before;
    - identify records with missing or unknown type;
    - identify duplicate records using MD5 hash values;
    - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
 2. Validation:
-   - validate each record using the validator instance(s), [*pdi/config.properties*](pdi/config.properties) specifies the TestSuide ids for Conformance Classes used for validation of:
-     - data sets and data series,
+   - validate each record using *\<validator_nodes\>* number of validator instances with *\<validator_url_X\>* URLs, 3 different Conformance Classes are used for the validation of:
+     - data sets and data set series,
 	 - network services,
-	 - invocable spatial data services (identified by the value *other* for *serviceType* XML element);
+	 - invocable spatial data services (identified by the value *other* for *serviceType* XML element),
+   TestSuide ids for the 3 Conformance Classes are specified in the configuration;
    - save validation reports for each record in *\<results_folder\>*/*\<endpoint\>* folder:
      - the subfolder structure of *\<source_folder\>* is preserved, 
 	 - filenames correspond to those of source metadata with *\<source_suffix\>* removed, 
