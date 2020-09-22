@@ -31,7 +31,7 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
    - identify duplicate records using MD5 hash values;
    - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
 2. Validation:
-   - validate each record using *\<validator_nodes\>* number of instances of the INSPIRE Reference Validator with *\<validator_url_X\>* URLs, 3 different Conformance Classes (as specified in the configuration file) are used for the validation of:
+   - validate each record using *\<validator_nodes\>* number of instances of the INSPIRE Reference Validator with *\<validator_url_X\>* URLs; 3 different conformance classes (as specified in the configuration file) are used for the validation of:
      - data sets and data set series,
 	 - network services,
 	 - invocable spatial data services (identified by the value *other* for *serviceType* XML element);
