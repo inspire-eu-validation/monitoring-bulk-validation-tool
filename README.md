@@ -41,7 +41,7 @@ Run [*validation.bat*](validation.bat) script, it will perform preprocessing, va
 	 - each report is saved in two versions: *.html* and *.json*;
    - add results for each record to CSV results *\<endpoint\>.csv*, detailed [below](#results-csv-columns).
 3. Results:
-   - after completed validation of all source metadata the following result files are generated: *\<endpoint\>.json*, *\<endpoint\>.services.zip* and *\<endpoint\>.dataset.zip*, detailed [below](#result-files);
+   - after completed validation of all source metadata the following result files are generated: *\<endpoint\>.json*, *\<endpoint\>.services.zip*, *\<endpoint\>.dataset.zip* and *validation.csv*, detailed [below](#result-files);
    - the results can be used to calculate the conformity indicators as detailed [below](#conformity-indicators).
 
 In case the validation does not complete for all source metadata (due to errors, user interruption, etc.), when the transformation is run for the same endpoint again, it will continue processing source metadata that were not processed before, hence are not included in CSV results. To re-validate an endpoint that was validated before, the CSV results file needs to be renamed or moved out of the results folder.  
@@ -55,10 +55,11 @@ All result files are saved in *\<results_folder\>*:
 3. *\<endpoint\>.csv* - validation results for each metadata record, detailed [below](#results-csv-columns),
 4. *\<endpoint\>.json* - validation results summary and source metadata summary,
 5. *\<endpoint\>.services.zip* - validation reports for service metadata records that failed validation,
-6. *\<endpoint\>.dataset.zip* - validation reports for dataset, series, missing and unkown metadata records that failed validation.
+6. *\<endpoint\>.dataset.zip* - validation reports for dataset, series, missing and unkown metadata records that failed validation,
+7. *validation.csv* - validation results summary and source metadata summary for each validation run.
 
 File 2 is produced only after completed preprocessing of all metadata records.  
-Files 4, 5 and 6 are produced only after completed validation of all metadata records.
+Files 4, 5, 6 and 7 are produced/updated only after completed validation of all metadata records.
 
 #### Results CSV columns
 - `file_id` - identifies source metadata file and validation reports,

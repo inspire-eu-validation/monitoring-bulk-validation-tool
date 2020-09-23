@@ -694,9 +694,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <logmessage/>
     <fields>
       <field>
-        <name>country</name>
-      </field>
-      <field>
         <name>endpoint</name>
       </field>
       <field>
@@ -760,9 +757,9 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${results_folder}/etf-results</name>
+      <name>${results_folder}/validation</name>
       <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
       <extention>csv</extention>
       <append>Y</append>
       <split>N</split>
@@ -777,18 +774,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <splitevery/>
     </file>
     <fields>
-      <field>
-        <name>country</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
       <field>
         <name>endpoint</name>
         <type>String</type>
@@ -862,7 +847,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>service</name>
+        <name>series</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -874,7 +859,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
         <precision>-1</precision>
       </field>
       <field>
-        <name>series</name>
+        <name>service</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -1102,8 +1087,8 @@ European Location Interoperability Solutions for e-Government (ELISE)
   "id": endpoint,
   "type_count": {
     "dataset": dataset,
-    "service": service,
     "series": series,
+    "service": service,
     "unknown": unknown,
     "missing": missing,
     "duplicate": duplicate
