@@ -398,7 +398,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <attributes/>
       <zipfilename>${results_folder}/${endpoint}.${name_service}.zip</zipfilename>
       <compressionrate>1</compressionrate>
-      <ifzipfileexists>2</ifzipfileexists>
+      <ifzipfileexists>3</ifzipfileexists>
       <wildcard>.*</wildcard>
       <wildcardexclude/>
       <sourcedirectory>${results_folder}/${endpoint}/${name_service}</sourcedirectory>
@@ -429,7 +429,7 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1088</xloc>
+      <xloc>1216</xloc>
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
@@ -635,17 +635,31 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
+    <entry>
+      <name>Delete folders</name>
+      <description/>
+      <type>DELETE_FOLDERS</type>
+      <attributes/>
+      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>10</limit_folders>
+      <fields>
+        <field>
+          <name>${results_folder}/${endpoint}/${name_dataset}</name>
+        </field>
+        <field>
+          <name>${results_folder}/${endpoint}/${name_service}</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1088</xloc>
+      <yloc>160</yloc>
+      <attributes_kjc/>
+    </entry>
   </entries>
   <hops>
-    <hop>
-      <from>zip service</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
     <hop>
       <from>json summary</from>
       <to>copy reports</to>
@@ -728,15 +742,6 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>failed services?</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>failed datasets?</from>
       <to>failed services?</to>
       <from_nr>0</from_nr>
@@ -744,6 +749,33 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>failed services?</from>
+      <to>Delete folders</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>zip service</from>
+      <to>Delete folders</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Delete folders</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
