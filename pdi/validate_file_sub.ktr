@@ -1282,6 +1282,100 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </GUI>
   </step>
   <step>
+    <name>inititialize</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <definitions>
+      <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+        <class_name>Processor</class_name>
+        <class_source>import inspire.validator.Queue;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.HttpClients;
+
+public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
+	int queueNr = Integer.parseInt(getVariable("queue_nr"));
+
+    logBasic("Initializing queue " + queueNr);
+
+	Queue queue = Queue.init(queueNr);
+
+	String proxyHost = getVariable("http.proxyHost", "");
+	int proxyPort = Integer.parseInt(getVariable("http.proxyPort", "-1"));
+	String proxyUser = getVariable("http.proxyUser", "");
+	String proxyPassword = getVariable("http.proxyPassword", "");
+
+	// Setup Proxy and Proxy Credentials
+	CredentialsProvider credsProvider = new BasicCredentialsProvider();
+	HttpHost proxy = null;
+
+	if (!proxyHost.equals("")) {
+		proxy = new HttpHost(proxyHost, proxyPort);
+
+		if (!proxyUser.equals("")) {
+			credsProvider.setCredentials(
+				new AuthScope(proxyHost, proxyPort),
+				new UsernamePasswordCredentials(proxyUser, proxyPassword)
+			);
+		}
+	}
+
+	queue.client = HttpClients
+		.custom()
+		.setDefaultCredentialsProvider(credsProvider)
+		.build();
+
+	RequestConfig.Builder reqConfigBuilder = RequestConfig.custom();
+	if (proxy != null) {
+		reqConfigBuilder.setProxy(proxy);
+	}
+
+	queue.config = reqConfigBuilder.build();
+
+	return parent.initImpl(stepMetaInterface, stepDataInterface);
+}
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
+    setOutputDone();
+    return false;
+}
+
+</class_source>
+      </definition>
+    </definitions>
+    <fields>
+    </fields>
+    <clear_result_fields>N</clear_result_fields>
+    <info_steps/>
+    <target_steps/>
+    <usage_parameters/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>make test json</name>
     <type>ScriptValueMod</type>
     <description/>
@@ -1300,9 +1394,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var test_args = JSON.stringify({
    "label": "Metadata test for " + md_id,
-   "executableTestSuiteIds": [
-      test_id
-   ],
+   "executableTestSuiteIds": test_id.split(","),
    "arguments": {
       "files_to_test": ".*",
       "tests_to_execute": ".*"
@@ -1701,6 +1793,39 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </GUI>
   </step>
   <step>
+    <name>test</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>test_name</field_name>
+      <formula_string>type.equals("service") ? (other ? "${service_other_cc}" : "${service_cc}") : "${dataset_cc}"</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>test completed?</name>
     <type>FilterRows</type>
     <description/>
@@ -1946,133 +2071,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <GUI>
       <xloc>576</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>test</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <formula>
-      <field_name>test_name</field_name>
-      <formula_string>type.equals("service") ? (other ? "${service_other_cc}" : "${service_cc}") : "${dataset_cc}"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>inititialize</name>
-    <type>UserDefinedJavaClass</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <definitions>
-      <definition>
-        <class_type>TRANSFORM_CLASS</class_type>
-        <class_name>Processor</class_name>
-        <class_source>import inspire.validator.Queue;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.HttpClients;
-
-public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-	int queueNr = Integer.parseInt(getVariable("queue_nr"));
-
-    logBasic("Initializing queue " + queueNr);
-
-	Queue queue = Queue.init(queueNr);
-
-	String proxyHost = getVariable("http.proxyHost", "");
-	int proxyPort = Integer.parseInt(getVariable("http.proxyPort", "-1"));
-	String proxyUser = getVariable("http.proxyUser", "");
-	String proxyPassword = getVariable("http.proxyPassword", "");
-
-	// Setup Proxy and Proxy Credentials
-	CredentialsProvider credsProvider = new BasicCredentialsProvider();
-	HttpHost proxy = null;
-
-	if (!proxyHost.equals("")) {
-		proxy = new HttpHost(proxyHost, proxyPort);
-
-		if (!proxyUser.equals("")) {
-			credsProvider.setCredentials(
-				new AuthScope(proxyHost, proxyPort),
-				new UsernamePasswordCredentials(proxyUser, proxyPassword)
-			);
-		}
-	}
-
-	queue.client = HttpClients
-		.custom()
-		.setDefaultCredentialsProvider(credsProvider)
-		.build();
-
-	RequestConfig.Builder reqConfigBuilder = RequestConfig.custom();
-	if (proxy != null) {
-		reqConfigBuilder.setProxy(proxy);
-	}
-
-	queue.config = reqConfigBuilder.build();
-
-	return parent.initImpl(stepMetaInterface, stepDataInterface);
-}
-
-public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
-    setOutputDone();
-    return false;
-}
-
-</class_source>
-      </definition>
-    </definitions>
-    <fields>
-    </fields>
-    <clear_result_fields>N</clear_result_fields>
-    <info_steps/>
-    <target_steps/>
-    <usage_parameters/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
