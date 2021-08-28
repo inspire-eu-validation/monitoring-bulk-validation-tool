@@ -1548,6 +1548,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
+import org.apache.http.HttpHeaders;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
@@ -1564,6 +1565,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
 	String validatorUrl = getVariable("validator_url", "http://inspire.ec.europa.eu/validator/v2/");
 	String testPath = getVariable("test_path", "TestRuns");
+	String authToken = getVariable("authorization_token");
 	
 	String testArgs = get(Fields.In, "test_args").getString(r);
 	String filename = get(Fields.In, "filename").getString(r);
@@ -1571,6 +1573,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 	// Http post
 	HttpPost httpPost = new HttpPost(validatorUrl + testPath);
 	httpPost.setConfig(queue.config);
+	if (authToken != null)
+		httpPost.setHeader(HttpHeaders.AUTHORIZATION, authToken);
 	try {
 		httpPost.setEntity(new StringEntity(testArgs, ContentType.APPLICATION_JSON));
 	} catch (Exception e) {

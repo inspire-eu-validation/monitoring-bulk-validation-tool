@@ -21,6 +21,7 @@ In [*pdi/config.properties*](pdi/config.properties) update the following items:
 - `source_suffix` - source metadata files suffix, used to filter the files to validate,
 - `validator_nodes` - number of validator instances to use, `validator_url_X` needs to be provided for each instance,
 - `validator_url_X` - URLs for each validator instance, up to "/v2/" [*http://.../v2/*],
+- `authorization_token` - authorization token to include in the header of "TestRuns" validator API POST request,
 - `queue_max_size` - maximum number of test runs that can be run in parallel on each validator instance.
 
 ### Usage
