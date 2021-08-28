@@ -479,6 +479,11 @@ European Location Interoperability Solutions for e-Government (ELISE)
       <to>Mapping output</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>get results</from>
+      <to>Dummy 2</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Dummy</name>
@@ -791,10 +796,47 @@ function recurse(obj, path, level, func) {
       <draw>Y</draw>
     </GUI>
   </step>
+  <step>
+    <name>Dummy 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step_error_handling>
     <error>
       <source_step>get json</source_step>
       <target_step>Dummy</target_step>
+      <is_enabled>Y</is_enabled>
+      <nr_valuename/>
+      <descriptions_valuename/>
+      <fields_valuename/>
+      <codes_valuename/>
+      <max_errors/>
+      <max_pct_errors/>
+      <min_pct_rows/>
+    </error>
+    <error>
+      <source_step>get results</source_step>
+      <target_step>Dummy 2</target_step>
       <is_enabled>Y</is_enabled>
       <nr_valuename/>
       <descriptions_valuename/>
