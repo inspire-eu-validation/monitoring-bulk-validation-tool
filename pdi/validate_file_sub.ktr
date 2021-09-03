@@ -1674,7 +1674,6 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
-import org.apache.http.HttpHeaders;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
@@ -1700,7 +1699,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 	HttpPost httpPost = new HttpPost(validatorUrl + testPath);
 	httpPost.setConfig(queue.config);
 	if (authToken != null)
-		httpPost.setHeader(HttpHeaders.AUTHORIZATION, authToken);
+		httpPost.setHeader("X-API-Key", authToken);
 	try {
 		httpPost.setEntity(new StringEntity(testArgs, ContentType.APPLICATION_JSON));
 	} catch (Exception e) {
