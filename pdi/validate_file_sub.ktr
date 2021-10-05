@@ -527,6 +527,132 @@ European Location Interoperability Solutions for e-Government (ELISE)
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>GET</note>
+      <xloc>448</xloc>
+      <yloc>80</yloc>
+      <width>41</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>POST</note>
+      <xloc>576</xloc>
+      <yloc>192</yloc>
+      <width>54</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>POST</note>
+      <xloc>752</xloc>
+      <yloc>224</yloc>
+      <width>54</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>GET</note>
+      <xloc>704</xloc>
+      <yloc>384</yloc>
+      <width>41</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>GET</note>
+      <xloc>448</xloc>
+      <yloc>480</yloc>
+      <width>41</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>GET</note>
+      <xloc>384</xloc>
+      <yloc>384</yloc>
+      <width>41</width>
+      <heigth>34</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
@@ -821,78 +947,78 @@ import org.apache.http.util.EntityUtils;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
+  Object[] r = getRow();
 
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
+  if (r == null) {
+    setOutputDone();
+    return false;
+  }
 
-	r = createOutputRow(r, data.outputRowMeta.size());
+  r = createOutputRow(r, data.outputRowMeta.size());
 
-	int queueNr = Integer.parseInt(getVariable("queue_nr"));
-	Queue queue = Queue.get(queueNr);
+  int queueNr = Integer.parseInt(getVariable("queue_nr"));
+  Queue queue = Queue.get(queueNr);
 
-	String validatorUrl = getVariable("validator_url");
-	String progressPath = getVariable("progress_path", "TestRuns?view=progress");
+  String validatorUrl = getVariable("validator_url");
+  String progressPath = getVariable("progress_path", "TestRuns?view=progress");
 
-	HttpGet httpGet = new HttpGet(validatorUrl + progressPath);
-	httpGet.setConfig(queue.config);
+  HttpGet httpGet = new HttpGet(validatorUrl + progressPath);
+  httpGet.setConfig(queue.config);
 
-	int queueMaxSize = Integer.parseInt(getVariable("queue_max_size", "4"));
-	int queueCheckDelay = Integer.parseInt(getVariable("queue_check_delay", "2"));
-	int count = queueMaxSize;
-	int delay = 0;
-	int errors = 0;
-	logDetailed("waiting for queue...");
-	do {
-		try {
-			Thread.sleep(delay * 1000);
-			delay = queueCheckDelay;
+  int queueMaxSize = Integer.parseInt(getVariable("queue_max_size", "4"));
+  int queueCheckDelay = Integer.parseInt(getVariable("queue_check_delay", "2"));
+  int count = queueMaxSize;
+  int delay = 0;
+  int errors = 0;
+  logDetailed("waiting for queue...");
+  do {
+    try {
+      Thread.sleep(delay * 1000);
+      delay = queueCheckDelay;
 
-			logDetailed("Requesting " + httpGet.getRequestLine());
-			CloseableHttpResponse response = queue.client.execute(httpGet);
-			try {
-				logDetailed(response.getStatusLine().toString());
-				if (response.getStatusLine().getStatusCode() == 200) {
-					String resStr = EntityUtils.toString(response.getEntity());
-					count = 0;
-					if (!"[]".equals(resStr)) {
-						try {
-							JSONArray jsonArray = (JSONArray) new JSONParser().parse(resStr);
-							//for (JSONObject obj : jsonArray) {
-							for (int i = 0; i &lt; jsonArray.size(); i++) {
-								JSONObject obj = (JSONObject) jsonArray.get(i);
-								if ((Double) obj.get("percentStepsCompleted") &lt; 100) {
-									count++;
-									obj.get("id");
-								}
-							}
-						} catch (Exception e) {
-							logBasic("Response : " + EntityUtils.toString(response.getEntity()));
-							logError("Error", e);
-						}
-					}
-					logBasic("queue " + queueNr + " size: " + count);
-				}
-	
-			} finally {
-				response.close();
-			}
-		} catch (Exception e) {
-			logError("Error", e);
-			delay = 90; // 1.5 minute delay in case of error
-			errors++;
-		}
-		if(errors > 12)
-			count = -1;
-	} while (!queue.incIfSmaller(queueMaxSize - count));
+      logDetailed("Requesting " + httpGet.getRequestLine());
+      CloseableHttpResponse response = queue.client.execute(httpGet);
+      try {
+        logDetailed(response.getStatusLine().toString());
+        if (response.getStatusLine().getStatusCode() == 200) {
+          String resStr = EntityUtils.toString(response.getEntity());
+          count = 0;
+          if (!"[]".equals(resStr)) {
+            try {
+              JSONArray jsonArray = (JSONArray) new JSONParser().parse(resStr);
+              //for (JSONObject obj : jsonArray) {
+              for (int i = 0; i &lt; jsonArray.size(); i++) {
+                JSONObject obj = (JSONObject) jsonArray.get(i);
+                if ((Double) obj.get("percentStepsCompleted") &lt; 100) {
+                  count++;
+                  obj.get("id");
+                }
+              }
+            } catch (Exception e) {
+              logBasic("Response : " + EntityUtils.toString(response.getEntity()));
+              logError("Error", e);
+            }
+          }
+          logBasic("queue " + queueNr + " size: " + count);
+        }
+  
+      } finally {
+        response.close();
+      }
+    } catch (Exception e) {
+      logError("Error", e);
+      delay = 90; // 1.5 minute delay in case of error
+      errors++;
+    }
+    if(errors > 12)
+      count = -1;
+  } while (!queue.incIfSmaller(queueMaxSize - count));
 
-	logDetailed("...proceeding");
+  logDetailed("...proceeding");
 
-	putRow(data.outputRowMeta, r);
+  putRow(data.outputRowMeta, r);
 
-	return true;
+  return true;
 }</class_source>
       </definition>
     </definitions>
@@ -940,64 +1066,64 @@ import org.apache.http.util.EntityUtils;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
+  Object[] r = getRow();
 
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
+  if (r == null) {
+    setOutputDone();
+    return false;
+  }
 
-	r = createOutputRow(r, data.outputRowMeta.size());
+  r = createOutputRow(r, data.outputRowMeta.size());
 
-	String validatorUrl = getVariable("validator_url", "http://inspire.ec.europa.eu/validator/v2/");
-	String testPath = getVariable("test_path", "TestRuns");
+  String validatorUrl = getVariable("validator_url", "http://inspire.ec.europa.eu/validator/v2/");
+  String testPath = getVariable("test_path", "TestRuns");
 
-	String runId = get(Fields.In, "run_id").getString(r);
-	Long startSeconds = get(Fields.In, "start_seconds").getLong(r);
-	String filename = get(Fields.In, "filename").getString(r);
+  String runId = get(Fields.In, "run_id").getString(r);
+  Long startSeconds = get(Fields.In, "start_seconds").getLong(r);
+  String filename = get(Fields.In, "filename").getString(r);
 
-	Queue queue = Queue.get(Integer.parseInt(getVariable("queue_nr")));
+  Queue queue = Queue.get(Integer.parseInt(getVariable("queue_nr")));
 
-	// Http get
-	HttpGet httpGet = new HttpGet(validatorUrl + testPath + "/" + runId + ".html");
-	httpGet.setConfig(queue.config);
+  // Http get
+  HttpGet httpGet = new HttpGet(validatorUrl + testPath + "/" + runId + ".html");
+  httpGet.setConfig(queue.config);
 
-	int tries = 0;
-	int maxTries = 2;
-	boolean success = false;
-	do {
-		try {
-			logBasic("Get result html for " + filename); 
-			if (tries > 0)
-				Thread.sleep(30 * 1000);
+  int tries = 0;
+  int maxTries = 2;
+  boolean success = false;
+  do {
+    try {
+      logBasic("Get result html for " + filename); 
+      if (tries > 0)
+        Thread.sleep(30 * 1000);
 
-			logDetailed("Requesting " + httpGet.getRequestLine()); 
-			CloseableHttpResponse response = queue.client.execute(httpGet);
-			try {
-				logDetailed(response.getStatusLine().toString());
-				if (response.getStatusLine().getStatusCode() == 200) {
-					success = true;
-					get(Fields.Out, "response_html").setValue(r, EntityUtils.toString(response.getEntity()));
-				} else {
-					logBasic("Get result html FAILED:"); 
-					logBasic(EntityUtils.toString(response.getEntity()));
-					break;
-				}
-			} finally {
-				response.close();
-			}
-		} catch (Exception e) {
-			logError("Error", e);
-		}
-	} while (!success &amp;&amp; ++tries &lt; maxTries);
+      logDetailed("Requesting " + httpGet.getRequestLine()); 
+      CloseableHttpResponse response = queue.client.execute(httpGet);
+      try {
+        logDetailed(response.getStatusLine().toString());
+        if (response.getStatusLine().getStatusCode() == 200) {
+          success = true;
+          get(Fields.Out, "response_html").setValue(r, EntityUtils.toString(response.getEntity()));
+        } else {
+          logBasic("Get result html FAILED:"); 
+          logBasic(EntityUtils.toString(response.getEntity()));
+          break;
+        }
+      } finally {
+        response.close();
+      }
+    } catch (Exception e) {
+      logError("Error", e);
+    }
+  } while (!success &amp;&amp; ++tries &lt; maxTries);
 
-	if (success)
-		putRow(data.outputRowMeta, r);
-	else {
-		putError(data.outputRowMeta, r, tries, "Get result html failed", filename, "");
-	}
+  if (success)
+    putRow(data.outputRowMeta, r);
+  else {
+    putError(data.outputRowMeta, r, tries, "Get result html failed", filename, "");
+  }
 
-	return true;
+  return true;
 }</class_source>
       </definition>
     </definitions>
@@ -1282,6 +1408,100 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </GUI>
   </step>
   <step>
+    <name>inititialize</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <definitions>
+      <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+        <class_name>Processor</class_name>
+        <class_source>import inspire.validator.Queue;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.HttpClients;
+
+public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
+  int queueNr = Integer.parseInt(getVariable("queue_nr"));
+
+    logBasic("Initializing queue " + queueNr);
+
+  Queue queue = Queue.init(queueNr);
+
+  String proxyHost = getVariable("http.proxyHost", "");
+  int proxyPort = Integer.parseInt(getVariable("http.proxyPort", "-1"));
+  String proxyUser = getVariable("http.proxyUser", "");
+  String proxyPassword = getVariable("http.proxyPassword", "");
+
+  // Setup Proxy and Proxy Credentials
+  CredentialsProvider credsProvider = new BasicCredentialsProvider();
+  HttpHost proxy = null;
+
+  if (!proxyHost.equals("")) {
+    proxy = new HttpHost(proxyHost, proxyPort);
+
+    if (!proxyUser.equals("")) {
+      credsProvider.setCredentials(
+        new AuthScope(proxyHost, proxyPort),
+        new UsernamePasswordCredentials(proxyUser, proxyPassword)
+      );
+    }
+  }
+
+  queue.client = HttpClients
+    .custom()
+    .setDefaultCredentialsProvider(credsProvider)
+    .build();
+
+  RequestConfig.Builder reqConfigBuilder = RequestConfig.custom();
+  if (proxy != null) {
+    reqConfigBuilder.setProxy(proxy);
+  }
+
+  queue.config = reqConfigBuilder.build();
+
+  return parent.initImpl(stepMetaInterface, stepDataInterface);
+}
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
+    setOutputDone();
+    return false;
+}
+
+</class_source>
+      </definition>
+    </definitions>
+    <fields>
+    </fields>
+    <clear_result_fields>N</clear_result_fields>
+    <info_steps/>
+    <target_steps/>
+    <usage_parameters/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>make test json</name>
     <type>ScriptValueMod</type>
     <description/>
@@ -1300,9 +1520,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var test_args = JSON.stringify({
    "label": "Metadata test for " + md_id,
-   "executableTestSuiteIds": [
-      test_id
-   ],
+   "executableTestSuiteIds": test_id.split(","),
    "arguments": {
       "files_to_test": ".*",
       "tests_to_execute": ".*"
@@ -1459,74 +1677,77 @@ import org.apache.http.util.EntityUtils;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
+  Object[] r = getRow();
 
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
+  if (r == null) {
+    setOutputDone();
+    return false;
+  }
 
-	r = createOutputRow(r, data.outputRowMeta.size());
+  r = createOutputRow(r, data.outputRowMeta.size());
 
-	Queue queue = Queue.get(Integer.parseInt(getVariable("queue_nr")));
+  Queue queue = Queue.get(Integer.parseInt(getVariable("queue_nr")));
 
-	String validatorUrl = getVariable("validator_url", "http://inspire.ec.europa.eu/validator/v2/");
-	String testPath = getVariable("test_path", "TestRuns");
-	
-	String testArgs = get(Fields.In, "test_args").getString(r);
-	String filename = get(Fields.In, "filename").getString(r);
+  String validatorUrl = getVariable("validator_url", "http://inspire.ec.europa.eu/validator/v2/");
+  String testPath = getVariable("test_path", "TestRuns");
+  String authToken = getVariable("authorization_token");
+  
+  String testArgs = get(Fields.In, "test_args").getString(r);
+  String filename = get(Fields.In, "filename").getString(r);
 
-	// Http post
-	HttpPost httpPost = new HttpPost(validatorUrl + testPath);
-	httpPost.setConfig(queue.config);
-	try {
-		httpPost.setEntity(new StringEntity(testArgs, ContentType.APPLICATION_JSON));
-	} catch (Exception e) {
-		logError("Error", e);
-	}
+  // Http post
+  HttpPost httpPost = new HttpPost(validatorUrl + testPath);
+  httpPost.setConfig(queue.config);
+  if (authToken != null)
+    httpPost.setHeader("X-API-Key", authToken);
+  try {
+    httpPost.setEntity(new StringEntity(testArgs, ContentType.APPLICATION_JSON));
+  } catch (Exception e) {
+    logError("Error", e);
+  }
 
-	/*	Uploads are deleted after 5 minutes from the server, 
-		so in order not to block test launching for next records
-		and not to let the launched tests pile up!
-		retries need to be limited. */
-	int tries = 0;
-	boolean success = false;
-	do {
-		try {
-			// Delay 10 seconds only see comment above
-			if (tries > 0)
-				Thread.sleep(10 * 1000);
+  /*  Uploads are deleted after 5 minutes from the server, 
+    so in order not to block test launching for next records
+    and not to let the launched tests pile up!
+    retries need to be limited. */
+  int tries = 0;
+  boolean success = false;
+  do {
+    try {
+      // Delay 10 seconds only see comment above
+      if (tries > 0)
+        Thread.sleep(10 * 1000);
 
-			logBasic("Launching test for " + filename); 
-			logDetailed("Requesting " + httpPost.getRequestLine()); 
-			CloseableHttpResponse response = queue.client.execute(httpPost);
-			try {
-				logDetailed(response.getStatusLine().toString());
-				if (response.getStatusLine().getStatusCode() == 201) {
-					success = true;
-					get(Fields.Out, "response").setValue(r, EntityUtils.toString(response.getEntity()));
-					get(Fields.Out, "start_seconds").setValue(r, Instant.now().getEpochSecond());
-				} else {
-					logBasic("Launch FAILED:"); 
-					logBasic(EntityUtils.toString(response.getEntity()));
-				}
-			} finally {
-				response.close();
-			}
-		} catch (Exception e) {
-			logError("Error", e);
-		}
-	} while (!success &amp;&amp; tries++ &lt; 1); // 1 retry only see comment above
+      logBasic("Launching test for " + filename); 
+      logDetailed("Requesting " + httpPost.getRequestLine()); 
+      CloseableHttpResponse response = queue.client.execute(httpPost);
+      try {
+        logDetailed(response.getStatusLine().toString());
+        if (response.getStatusLine().getStatusCode() == 201) {
+          success = true;
+          get(Fields.Out, "response").setValue(r, EntityUtils.toString(response.getEntity()));
+          get(Fields.Out, "start_seconds").setValue(r, Instant.now().getEpochSecond());
+        } else {
+          logBasic("Launch FAILED:"); 
+          logBasic(EntityUtils.toString(response.getEntity()));
+        }
+      } finally {
+        response.close();
+      }
+    } catch (Exception e) {
+      logError("Error", e);
+    }
+  } while (!success &amp;&amp; tries++ &lt; 1); // 1 retry only see comment above
 
-	queue.decrement();
+  queue.decrement();
 
-	if (success)
-		putRow(data.outputRowMeta, r);
-	else {
-		putError(data.outputRowMeta, r, tries, "Test launch failed", filename, "");
-	}
+  if (success)
+    putRow(data.outputRowMeta, r);
+  else {
+    putError(data.outputRowMeta, r, tries, "Test launch failed", filename, "");
+  }
 
-	return true;
+  return true;
 }</class_source>
       </definition>
     </definitions>
@@ -1701,6 +1922,39 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </GUI>
   </step>
   <step>
+    <name>test</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <formula>
+      <field_name>test_name</field_name>
+      <formula_string>type.equals("service") ? (other ? "${service_other_cc}" : "${service_cc}") : "${dataset_cc}"</formula_string>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>test completed?</name>
     <type>FilterRows</type>
     <description/>
@@ -1854,72 +2108,75 @@ import org.apache.http.util.EntityUtils;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
+  Object[] r = getRow();
 
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
+  if (r == null) {
+    setOutputDone();
+    return false;
+  }
 
-	r = createOutputRow(r, data.outputRowMeta.size());
+  r = createOutputRow(r, data.outputRowMeta.size());
 
 
-	String validatorUrl = getVariable("validator_url", "http://inspire.ec.europa.eu/validator/v2/");
-	String uploadPath = getVariable("upload_path", "TestObjects?action=upload");
-	Queue queue = Queue.get(Integer.parseInt(getVariable("queue_nr")));
+  String validatorUrl = getVariable("validator_url", "http://inspire.ec.europa.eu/validator/v2/");
+  String uploadPath = getVariable("upload_path", "TestObjects?action=upload");
+  Queue queue = Queue.get(Integer.parseInt(getVariable("queue_nr")));
 
-	// Load the file
-	String longFileNameString = get(Fields.In, "filename").getString(r);
-	File file = new File(longFileNameString);
+  // Load the file
+  String longFileNameString = get(Fields.In, "filename").getString(r);
+  File file = new File(longFileNameString);
 
-	// Multipart entity
-	MultipartEntityBuilder entity = MultipartEntityBuilder.create();
-	//entity.setMode(HttpMultipartMode.STRICT);
-	entity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-	entity.addBinaryBody("file", file);
-	entity.addTextBody("fileName", file.getName());
+  // Multipart entity
+  MultipartEntityBuilder entity = MultipartEntityBuilder.create();
+  //entity.setMode(HttpMultipartMode.STRICT);
+  entity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+  entity.addBinaryBody("fileupload", file);
+  //entity.addTextBody("fileupload", file.getName());
 
-	// Http post
-	HttpPost httpPost = new HttpPost(validatorUrl + uploadPath);
-	httpPost.setConfig(queue.config);
-	httpPost.setEntity(entity.build());
+  // Http post
+  HttpPost httpPost = new HttpPost(validatorUrl + uploadPath);
+  httpPost.setConfig(queue.config);
+  httpPost.setEntity(entity.build());
+  // 20210921 PATCH: Include Accept header
+  httpPost.addHeader("Accept", "*/*");
+  
+  logBasic(httpPost.getEntity().toString());
+  int tries = 0;
+  int maxTries = 12;
+  boolean success = false;
+  do {
+    try {
+      if (tries > 0)
+        Thread.sleep(90 * 1000); // delay 1.5 minutes
 
-	int tries = 0;
-	int maxTries = 12;
-	boolean success = false;
-	do {
-		try {
-			if (tries > 0)
-				Thread.sleep(90 * 1000); // delay 1.5 minutes
+      logBasic("Uploading " + longFileNameString); 
+      logDetailed("Requesting " + httpPost.getRequestLine()); 
+      CloseableHttpResponse response = queue.client.execute(httpPost);
+      try {
+        logDetailed(response.getStatusLine().toString());
+        if (response.getStatusLine().getStatusCode() == 200) {
+          success = true;
+          get(Fields.Out, "response").setValue(r,  EntityUtils.toString(response.getEntity()));
+        } else {
+          logBasic("Upload FAILED:");
+          logBasic(EntityUtils.toString(response.getEntity()));
+        }
+      } finally {
+        response.close();
+      }
+    } catch (Exception e) {
+      logError("Error", e);
+    }
+  } while (!success &amp;&amp; tries++ &lt; maxTries);
 
-			logBasic("Uploading " + longFileNameString); 
-			logDetailed("Requesting " + httpPost.getRequestLine()); 
-			CloseableHttpResponse response = queue.client.execute(httpPost);
-			try {
-				logDetailed(response.getStatusLine().toString());
-				if (response.getStatusLine().getStatusCode() == 200) {
-					success = true;
-					get(Fields.Out, "response").setValue(r,  EntityUtils.toString(response.getEntity()));
-				} else {
-					logBasic("Upload FAILED:");
-					logBasic(EntityUtils.toString(response.getEntity()));
-				}
-			} finally {
-				response.close();
-			}
-		} catch (Exception e) {
-			logError("Error", e);
-		}
-	} while (!success &amp;&amp; tries++ &lt; maxTries);
+  if (success)
+    putRow(data.outputRowMeta, r);
+  else {
+    putError(data.outputRowMeta, r, tries, "Upload failed", longFileNameString, "");
+    queue.decrement();
+  }
 
-	if (success)
-		putRow(data.outputRowMeta, r);
-	else {
-		putError(data.outputRowMeta, r, tries, "Upload failed", longFileNameString, "");
-		queue.decrement();
-	}
-
-	return true;
+  return true;
 }</class_source>
       </definition>
     </definitions>
@@ -1946,133 +2203,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <GUI>
       <xloc>576</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>test</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <formula>
-      <field_name>test_name</field_name>
-      <formula_string>type.equals("service") ? (other ? "${service_other_cc}" : "${service_cc}") : "${dataset_cc}"</formula_string>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>inititialize</name>
-    <type>UserDefinedJavaClass</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <definitions>
-      <definition>
-        <class_type>TRANSFORM_CLASS</class_type>
-        <class_name>Processor</class_name>
-        <class_source>import inspire.validator.Queue;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.HttpClients;
-
-public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-	int queueNr = Integer.parseInt(getVariable("queue_nr"));
-
-    logBasic("Initializing queue " + queueNr);
-
-	Queue queue = Queue.init(queueNr);
-
-	String proxyHost = getVariable("http.proxyHost", "");
-	int proxyPort = Integer.parseInt(getVariable("http.proxyPort", "-1"));
-	String proxyUser = getVariable("http.proxyUser", "");
-	String proxyPassword = getVariable("http.proxyPassword", "");
-
-	// Setup Proxy and Proxy Credentials
-	CredentialsProvider credsProvider = new BasicCredentialsProvider();
-	HttpHost proxy = null;
-
-	if (!proxyHost.equals("")) {
-		proxy = new HttpHost(proxyHost, proxyPort);
-
-		if (!proxyUser.equals("")) {
-			credsProvider.setCredentials(
-				new AuthScope(proxyHost, proxyPort),
-				new UsernamePasswordCredentials(proxyUser, proxyPassword)
-			);
-		}
-	}
-
-	queue.client = HttpClients
-		.custom()
-		.setDefaultCredentialsProvider(credsProvider)
-		.build();
-
-	RequestConfig.Builder reqConfigBuilder = RequestConfig.custom();
-	if (proxy != null) {
-		reqConfigBuilder.setProxy(proxy);
-	}
-
-	queue.config = reqConfigBuilder.build();
-
-	return parent.initImpl(stepMetaInterface, stepDataInterface);
-}
-
-public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
-    setOutputDone();
-    return false;
-}
-
-</class_source>
-      </definition>
-    </definitions>
-    <fields>
-    </fields>
-    <clear_result_fields>N</clear_result_fields>
-    <info_steps/>
-    <target_steps/>
-    <usage_parameters/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
