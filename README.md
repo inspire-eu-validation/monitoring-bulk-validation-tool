@@ -1,23 +1,26 @@
 ## Bulk processing tool for the INSPIRE Reference Validator
-This software tool allows for validation of large numbers of metadata records using the API of the [INSPIRE Reference Validator](https://inspire.ec.europa.eu/validator/about/). It was developed to support INSPIRE Monitoring & Reporting activities. The tool was built with [Pentaho Data Integration Community Edition](https://community.hitachivantara.com/s/article/data-integration-kettle) platform which is required to use it.
+This software tool allows for validation of large numbers of metadata records using the API of the [INSPIRE Reference Validator](https://inspire.ec.europa.eu/validator/about/). It was developed to support INSPIRE Monitoring & Reporting activities. The tool was built with [Pentaho Data Integration] platform which is required to use it.
 
 ### Prerequisites
-- One or more instances of **INSPIRE Reference Validator** [latest release](https://github.com/inspire-eu-validation/community/releases/latest).
-- **Pentaho Data Integration** (PDI) **Community Edition** (CE), suggested PDI CE version is [9.0](https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/client-tools/pdi-ce-9.0.0.0-423.zip/download) or 8.2, (8.3 suffers from JSON Input step performance deterioration and is not recommended). In case of slow download click "Problems downloading?" and try an alternative download mirror.
-- **Apache HttpClient** components [4.5.12](https://downloads.apache.org/httpcomponents/httpclient/binary/httpcomponents-client-4.5.12-bin.zip).
-- Source metadata compiled according to the **INSPIRE Technical Guidelines** (TG) version **2.0** and available as XML files with single metadata record per file.
+- One or more instances of **INSPIRE Reference Validator** [latest release](https://github.com/inspire-eu-validation/community/releases/latest). 
+- JDK Version 11 (or newer) (https://jdk.java.net/archive/)
+- Pentaho Data Integration Community (PDI) v.10.2.0.0-222 (https://pentaho.com/pentaho-developer-edition/ you have to register yourself in order to download it)
+- Apache HttpClient  v.4.5.14 (https://hc.apache.org/downloads.cgi binary tar.gz)
+- Python 3
 
-### Installation
-- Unzip PDI,
-- copy all *.jar* files from Apache HttpClient to your PDI *lib* folder,
-- copy [*inspire-validator.jar*](inspire-validator.jar) to your PDI *lib* folder,
-- in [*validation.bat*](validation.bat) insert the path to your PDI *data-integration* folder.
+### Installation 
+- Set JAVA_HOME variable in order to point to the jdk dowloaded before 
+- Unzip PDI folder 
+- Copy the inspire-validator.jar in the lib folder of the PDI.
+- Unzip HttpClient file and copy from the lib folder the httpmime-4.5.14.jar in the lib folder of the PDI.
+- Launch from the Terminal the spoon.sh (Linux env) or spoon.bat (Windows env) script in order to open the Tool (don't worry if you obtain some warning regarding a library to install: it is not strictly required).
+
 
 ### Configuration
 In [*pdi/config.properties*](pdi/config.properties) update the following items:
 - `endpoint` - endpoint id, used to create file- and folder- names [use only characters valid for a filename],
-- `source_folder` - folder where source metadata are located (including subfolders) [use forward slashes "/" in the path],
-- `results_folder` - folder where results will be written [use forward slashes "/" in the path],
+- `source_folder` - folder where source metadata are located (including subfolders) [use forward slashes "/" in the path, also in Windows env],
+- `results_folder` - folder where results will be written [use forward slashes "/" in the path, also in Windows env],
 - `source_suffix` - source metadata files suffix, used to filter the files to validate,
 - `validator_nodes` - number of validator instances to use, `validator_url_X` needs to be provided for each instance,
 - `validator_url_X` - URLs for each validator instance, up to "/v2/" [*http://.../v2/*],
@@ -25,29 +28,51 @@ In [*pdi/config.properties*](pdi/config.properties) update the following items:
 - `queue_max_size` - maximum number of test runs that can be run in parallel on each validator instance.
 
 ### Usage
-Run [*validation.bat*](validation.bat) script, it will perform preprocessing, validation and results generation as described below:
-1. Preprocessing:
-   - read all files with the given *\<source_suffix\>* located in *\<source_folder\>* (including subfolders) that were not validated before;
-   - identify records with missing or unknown type;
-   - identify duplicate records using MD5 hash values;
-   - create *\<endpoint\>.md.json* metadata summary (after completed preprocessing of all records).
-2. Validation:
-   - validate each record using *\<validator_nodes\>* number of instances of the INSPIRE Reference Validator with *\<validator_url_X\>* URLs; 3 different conformance classes (as specified in the configuration file) are used for the validation of:
-     - data sets and data set series,
-	 - network services,
-	 - invocable spatial data services (identified by the value *other* for *serviceType* XML element);
-   - save validation reports for each record in *\<results_folder\>*/*\<endpoint\>* folder:
-     - the subfolder structure of *\<source_folder\>* is preserved, 
-	 - filenames correspond to those of source metadata with *\<source_suffix\>* removed, 
-	 - each report is saved in two versions: *.html* and *.json*;
-   - add results for each record to CSV results *\<endpoint\>.csv*, detailed [below](#results-csv-columns).
-3. Results:
-   - after completed validation of all source metadata the following result files are generated: *\<endpoint\>.json*, *\<endpoint\>.services.zip*, *\<endpoint\>.dataset.zip* and *validation.csv*, detailed [below](#result-files);
-   - the results can be used to calculate the conformity indicators as detailed [below](#conformity-indicators).
+- On your local machine create a new dedicated folder, called for example 'BULK_VALIDATOR' and two sub-folder 'INPUT' and 'OUTPUT'. 
 
-In case the validation does not complete for all source metadata (due to errors, user interruption, etc.), when the transformation is run for the same endpoint again, it will continue processing source metadata that were not processed before, hence are not included in CSV results. To re-validate an endpoint that was validated before, the CSV results file needs to be renamed or moved out of the results folder.  
+- In the INPUT folder put the folder and the files of the countries used for the validation process.
 
-Alternatively, the procedure can be run from the PDI user interface (Spoon) which provides more control and feedback, and allows for modifications. For this purpose run *Spoon.bat*, open and run [*pdi/validation.kjb*](pdi/validation.kjb) job.
+- Open from the scripts folder, the file 'Job asier.kjb' inside the folder InspireTeam-scripts and modify the variables that contain link to other files with your local path (3 occurrences) (In order to find them, try so search '/home/user/Documents').
+
+- From spoon, open the process 'Job asier.ktr' from the InspireTeam-scripts folder (no input parameters have to be inserted because the process reads them from the config.properties). 
+
+- At the end of the process, check if inside the OUTPUT folder, a new folder with the country code as name has been created. It should contain some files. 
+
+- If in the OUTPUT folder a new folder named 'resteting-endpoint' and 'testout_endpoint' have been created, some errors 3.6 are present.
+
+- (If this folder is not present, go to step (*))
+
+- Launch again the process 'Job asier.ktr' modifying the config.properties file putting as source_folder the restesting folder and as results_folder a folder named with the endpoint in the retesting folder. 
+
+- Go to 'monitoring-bulk-validation-tool/saparated_failed', open a terminal and launch this command:
+  
+  python3 intersect.py /home/<user>/Documents/BULK_VALIDATION/OUTPUT/<coutrycode>/<endpoint>/<endpoint>/ /home/<user>/Documents/BULK_VALIDATION/OUTPUT/<coutrycode>/<endpoint>/retesting-<endpoint>/ /home/<user>/Documents/BULK_VALIDATION/OUTPUT/<coutrycode>/<endpoint>/testout_<endpoint>.csv /home/<user>/Documents/BULK_VALIDATION/OUTPUT/<coutrycode>/<endpoint>/<endpoint>.csv
+  
+  where <countrycode> and <endpoint> will be substituted by the country code and the endpoint of the country.
+
+  In this command, there are four variables (starting from '/home') that are:
+  1) report total location (folder where html and json file created are)
+  2) report error location (new retesting folder)
+  3) file errors (new testout file created)
+  4) file total (csv created after the first process)
+
+  Repeat these last two steps for 3 times in order to check multiples time metadata that give 3.6 errors.
+
+- (*) Open with spoon the process 'summarize_error.ktr' from the InspireTeam-scripts folder. In the input parameters, configure:
+  [*path_folder*] with path of the csv called with the endpoint generated from the process before.
+  [*results_folder*] with the path that contains all the files.
+
+  For example:
+  results_folder=/home/<user>/Documents/BULK_VALIDATION/OUTPUT/<coutrycode>/<endpoint>/<endpoint>.csv
+  path_folder=/home/<user>/Documents/BULK_VALIDATION/OUTPUT/<coutrycode>/<endpoint>/
+
+- At the end of the process, verify that in the results_folder has been created the file 'summarize_error.xlsx'. 
+
+- Open the process 'filter_failed_csv_2.ktr' from the InspireTeam-scripts folder. In the input parameters, configure:
+  [*in_csv*] with the the same value used for the variable 'results_folder' before.
+
+- At the end of the process, in the OUTPUT folder, the file <endpoint>-error.csv will contain the errors. It this file is not present, no errors have been detected.
+
 
 #### Result files
 All result files are saved in *\<results_folder\>*:
@@ -81,32 +106,5 @@ MDi1.2 = service_metadata_passed / DSi1.2
 ### Support
 If you experience any issue in the setup and/or use of the software, please open an issue in the [INSPIRE Validator helpdesk](https://github.com/inspire-eu-validation/community/issues/new/choose).
 
-### External document references
 
-| Abbreviation | Document name                       |
-| ------------ | ----------------------------------- |
-| INSPIRE | [Directive 2007/2/EC of the European Parliament and of the Council of 14 March 2007 establishing an Infrastructure for Spatial Information in the European Community (INSPIRE)](http://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32007L0002&from=EN) |
-| ID M&R | [COMMISSION IMPLEMENTING DECISION (EU) 2019/1372 of 19 August 2019 implementing Directive  2007/2/EC of  the  European Parliament and  of  the  Council as  regards monitoring and reporting](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32019D1372&from=EN) |
-
-### Acknowledgments
-This software tool was developed with contributions by:
-- [Lukasz Ziemba](https://github.com/ukiz)
-- [Davide Artasensi](https://github.com/dartasensi)
-- [Marco Minghini](https://github.com/MarcoMinghini)
-- [Fabio Vinci](https://github.com/fabiovin)
-
-This work was supported by the [Interoperability solutions for public administrations, businesses and citizens programme](http://ec.europa.eu/isa2) through Action 2016.10: European Location Interoperability Solutions for e-Government (ELISE).
-
-### Licence
-Copyright 2020 EUROPEAN UNION  
-Licensed under the EUPL, Version 1.2 or - as soon as they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence").  
-You may not use this work except in compliance with the Licence.  
-You may obtain a copy of the Licence at:
-
-https://ec.europa.eu/isa2/solutions/european-union-public-licence-eupl_en
-
-Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
-See the Licence for the specific language governing permissions and limitations under the Licence.
-
-Date: 2020/06/08  
-Authors: European Commission, Joint Research Centre - jrc-inspire-support@ec.europa.eu
+Date: 2024/12/11
