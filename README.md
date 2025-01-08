@@ -59,8 +59,8 @@ In [*pdi/config.properties*](pdi/config.properties) update the following items:
   Repeat these last two steps for 3 times in order to check multiples time metadata that give 3.6 errors.
 
 - (*) Open with spoon the process 'summarize_error.ktr' from the InspireTeam-scripts folder. In the input parameters, configure:
-  [*path_folder*] with path of the csv called with the endpoint generated from the process before.
-  [*results_folder*] with the path that contains all the files.
+  [*results_folder*] with path of the csv called with the endpoint generated from the process before.
+  [*path_folder*] with the path that contains all the files.
 
   For example:
   results_folder=/home/<user>/Documents/BULK_VALIDATION/OUTPUT/<coutrycode>/<endpoint>/<endpoint>.csv
